@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Container, Typography, Card, CardContent, Link } from '@mui/material';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <Container maxWidth="sm">
+            <Typography variant="h1" align="center" gutterBottom>
+                Formula 1 APIs
+            </Typography>
+            <Card className="card">
+                <CardContent>
+                    <Typography variant="body1" gutterBottom>
+                        Welcome!
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+                        Here you can find open RESTful APIs for Formula 1 data.
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+                        <Link href="https://f1.schoder.uk" target="_blank" rel="noopener">Open APIs</Link>
+                    </Typography>
+                    <Typography variant="body1">
+                        <Link href="https://github.com/dietmar-schoder/Formula1" target="_blank" rel="noopener">GitHub repository</Link>
+                    </Typography>
+                </CardContent>
+            </Card>
+        </Container>
+    );
 }
 
-export default App
+export default App;
