@@ -55,7 +55,7 @@ const Home = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    {apiUrl}
+                    API documentation
                 </Button>
             </Typography>
             <Typography sx={{ marginBottom: 2 }}>
