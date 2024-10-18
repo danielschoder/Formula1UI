@@ -1,13 +1,13 @@
 import { Container, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
-import { Constructor } from '../interfaces/Constructor';
+import { GrandPrixDto } from '../interfaces/GrandPrixDto.ts';
 import { useFetchData } from '../hooks/useFetchData';
 import { baseUrl } from '../constants';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 
-function Constructors() {
-    const apiUrl = `${baseUrl}/api/constructors`;
-    const { data: constructors, loading, error } = useFetchData<Constructor[]>(apiUrl);
+function GrandPrix() {
+    const apiUrl = `${baseUrl}/api/grandprix`;
+    const { data: grandPrixDtos, loading, error } = useFetchData<GrandPrixDto[]>(apiUrl);
 
     if (loading) { return <Loading />; }
     if (error) { return <Error error={error} />; }
@@ -15,7 +15,7 @@ function Constructors() {
     return (
         <Container>
             <Typography variant="h2" gutterBottom>
-                Constructors
+                Grand Prix
             </Typography>
             <Typography gutterBottom>
                 <Button
@@ -29,9 +29,9 @@ function Constructors() {
                 </Button>
             </Typography>
             <List>
-                {constructors?.map((constructor) => (
-                    <ListItem key={constructor.id}>
-                        <ListItemText primary={constructor.name} />
+                {grandPrixDtos?.map((grandPrixDto) => (
+                    <ListItem key={grandPrixDto.id}>
+                        <ListItemText primary={grandPrixDto.name} />
                     </ListItem>
                 ))}
             </List>
@@ -39,4 +39,4 @@ function Constructors() {
     );
 }
 
-export default Constructors;
+export default GrandPrix;

@@ -1,13 +1,13 @@
 import { Container, Typography, List, ListItem, ListItemText, Button } from '@mui/material';
-import { Constructor } from '../interfaces/Constructor';
 import { useFetchData } from '../hooks/useFetchData';
 import { baseUrl } from '../constants';
+import { Driver } from '../interfaces/Driver';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
 
 function Constructors() {
-    const apiUrl = `${baseUrl}/api/constructors`;
-    const { data: constructors, loading, error } = useFetchData<Constructor[]>(apiUrl);
+    const apiUrl = `${baseUrl}/api/drivers`;
+    const { data: drivers, loading, error } = useFetchData<Driver[]>(apiUrl);
 
     if (loading) { return <Loading />; }
     if (error) { return <Error error={error} />; }
@@ -15,7 +15,7 @@ function Constructors() {
     return (
         <Container>
             <Typography variant="h2" gutterBottom>
-                Constructors
+                Drivers
             </Typography>
             <Typography gutterBottom>
                 <Button
@@ -29,9 +29,9 @@ function Constructors() {
                 </Button>
             </Typography>
             <List>
-                {constructors?.map((constructor) => (
-                    <ListItem key={constructor.id}>
-                        <ListItemText primary={constructor.name} />
+                {drivers?.map((driver) => (
+                    <ListItem key={driver.id}>
+                        <ListItemText primary={driver.name} />
                     </ListItem>
                 ))}
             </List>
