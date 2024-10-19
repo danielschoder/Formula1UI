@@ -5,6 +5,24 @@ import { baseUrl } from '../constants';
 const Home = () => {
     const apiUrl = `${baseUrl}/scalar/v1`;
 
+    const menuItems = [
+        { label: "Seasons", path: "/seasons" },
+        { label: "Grand Prix", path: "/grandprix" },
+        { label: "Drivers", path: "/drivers" },
+        { label: "Constructors", path: "/constructors" },
+        { label: "Circuits", path: "/circuits" },
+        { label: "Races", path: "/races" },
+        { label: "Sessions", path: "/sessions" },
+        { label: "Results", path: "/results" },
+        { label: "Session Types", path: "/sessiontypes" }
+    ];
+
+    const renderMenuButton = (label: string, path: string) => (
+        <Button variant="text" component={RouterLink} to={path}>
+            {label}
+        </Button>
+    );
+
     return (
         <Container>
             <Typography variant="h2" gutterBottom>
@@ -15,34 +33,7 @@ const Home = () => {
             </Typography>
 
             <Stack spacing={2} alignItems="flex-start" sx={{ marginBottom: 2 }}>
-                <Button
-                    variant="text"
-                    component={RouterLink}
-                    to="/seasons"
-                >
-                    Seasons
-                </Button>
-                <Button
-                    variant="text"
-                    component={RouterLink}
-                    to="/grandprix"
-                >
-                    Grand Prix
-                </Button>
-                <Button
-                    variant="text"
-                    component={RouterLink}
-                    to="/drivers"
-                >
-                    Drivers
-                </Button>
-                <Button
-                    variant="text"
-                    component={RouterLink}
-                    to="/constructors"
-                >
-                    Constructors
-                </Button>
+                {menuItems.map((item) => renderMenuButton(item.label, item.path))}
             </Stack>
 
             <Divider sx={{ marginBottom: 2 }} />
