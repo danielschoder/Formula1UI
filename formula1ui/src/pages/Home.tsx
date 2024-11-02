@@ -60,7 +60,6 @@ const Home = () => {
                     GitHub repository
                 </Button>
             </Typography>
-
         </Container>
     );
 };

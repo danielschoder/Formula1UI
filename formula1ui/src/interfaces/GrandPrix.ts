@@ -1,4 +1,4 @@
-export interface GrandPrixDto {
+export interface GrandPrix {
     id: string;
     name: string;
 }
