@@ -1,10 +1,10 @@
 import { List, ListItem, ListItemText } from '@mui/material';
-import { GrandPrixDto } from '../interfaces/GrandPrixDto.ts';
+import { GrandPrix } from '../interfaces/GrandPrix.ts';
 import BaseListPage from './BaseListPage.tsx';
 
-function GrandPrix() {
+function GrandPrixPage() {
     return (
-        <BaseListPage<GrandPrixDto>
+        <BaseListPage<GrandPrix>
             title="Grand Prix"
             url="/api/grandprix"
             renderList={(grandPrixDtos) => (
@@ -20,4 +20,4 @@ function GrandPrix() {
     );
 }
 
-export default GrandPrix;
+export default GrandPrixPage;

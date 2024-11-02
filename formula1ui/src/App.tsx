@@ -4,7 +4,7 @@ import { AppBar, Toolbar, Typography, IconButton, Drawer, List, CssBaseline, Lis
 import Circuits from './pages/Circuits';
 import Constructors from './pages/Constructors';
 import Drivers from './pages/Drivers';
-import GrandPrix from './pages/GrandPrix';
+import GrandPrixPage from './pages/GrandPrixPage';
 import Home from './pages/Home';
 import MenuIcon from '@mui/icons-material/Menu';
 import Races from './pages/Races';
@@ -67,7 +67,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/seasons" element={<Seasons />} />
-                    <Route path="/grandprix" element={<GrandPrix />} />
+                    <Route path="/grandprix" element={<GrandPrixPage />} />
                     <Route path="/drivers" element={<Drivers />} />
                     <Route path="/constructors" element={<Constructors />} />
                     <Route path="/circuits" element={<Circuits />} />
