@@ -1,2 +1,1 @@
-//export const baseUrl = "https://formula1openapi.azurewebsites.net";
-export const baseUrl = "https://localhost:7277";
+export const baseUrl: string = import.meta.env.VITE_API_URL as string;
