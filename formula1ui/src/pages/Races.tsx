@@ -1,10 +1,9 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { Race } from '../interfaces/Race';
-import BaseListPage from './BaseListPage';
+import BaseListPageProps from './BaseListPage';
 
 function Races() {
     return (
-        <BaseListPage<Race>
+        <BaseListPageProps
             title="Races"
             url="/api/races"
             renderList={(races) => (
@@ -17,12 +16,12 @@ function Races() {
                                         {race.seasonYear}
                                     </Typography>
                                 </Box>
-                                <Box flex={1} textAlign="center">
+                                <Box flex={1}>
                                     <Typography variant="body1" color="primary">
                                         Round: {race.round}
                                     </Typography>
                                 </Box>
-                                <Box flex={1} textAlign="right">
+                                <Box flex={1}>
                                     <Typography variant="body1" color="text.primary" fontStyle="italic">
                                         {race.grandPrix.name}
                                     </Typography>
