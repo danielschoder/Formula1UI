@@ -6,7 +6,7 @@ function GrandPrixPage() {
     return (
         <BaseListPage<GrandPrix>
             title="Grand Prix"
-            url="/api/grandprix"
+            route="/api/grandprix"
             renderList={(grandPrixDtos) => (
                 <List>
                     {grandPrixDtos?.map((grandPrixDto) => (

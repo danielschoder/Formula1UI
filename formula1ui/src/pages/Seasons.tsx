@@ -6,7 +6,7 @@ function Seasons() {
     return (
         <BaseListPage<Season>
             title="Seasons"
-            url="/api/seasons"
+            route="/api/seasons"
             renderList={(seasons) => (
                 <List>
                     {seasons?.map((season) => (

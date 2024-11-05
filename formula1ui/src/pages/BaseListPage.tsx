@@ -1,29 +1,28 @@
 import { Button, Container, Pagination, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { baseUrl } from '../constants';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import { baseUrl } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
-import { Race, RacesPaginated } from '../interfaces/Race';
 
-interface BaseListPageProps {
+interface BaseListPageProps<T> {
     title: string;
-    url: string;
-    renderList: (items: Race[]) => React.ReactNode;
+    route: string;
+    renderList: (items: T[]) => React.ReactNode;
 }
 
-function BaseListPage({ title, url, renderList }: BaseListPageProps) {
+function BaseListPage<T>({ title, route, renderList } : BaseListPageProps<T>) {
+    const { data, loading, error } = useFetchData<T>(route);
     const [page, setPage] = useState(1);
     const [pageSize] = useState(20);
-    const apiUrl = `${baseUrl}${url}?pageNumber=${page}&pageSize=${pageSize}`;
-    const { data, loading, error } = useFetchData<RacesPaginated>(apiUrl);
+    const apiUrl = `${baseUrl}${route}?pageNumber=${page}&pageSize=${pageSize}`;
+
+    if (loading) { return <Loading />; }
+    if (error) { return <Error error={error} />; }
 
     const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
-
-    if (loading) { return <Loading />; }
-    if (error) { return <Error error={error} />; }
 
     return (
         <Container>
@@ -39,11 +38,11 @@ function BaseListPage({ title, url, renderList }: BaseListPageProps) {
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {url}
+                    {route}
                 </Button>
             </Typography>
 
-            {renderList(data?.races || [])}
+            {renderList(data?.items || [])}
 
             <Pagination
                 count={Math.ceil((data?.totalCount || 0) / pageSize)}

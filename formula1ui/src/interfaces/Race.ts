@@ -1,11 +1,12 @@
 import { Circuit } from "./Circuit";
 import { GrandPrix } from "./GrandPrix";
 
-export interface RacesPaginated {
-    races: Race[];
-    pageNumber: number;
-    pageSize: number;
-    totalCount: number;
+export class RacesPaginated {
+    items: Race[] = [];
+    races: Race[] = [];
+    pageNumber: number = 0;
+    pageSize: number = 0;
+    totalCount: number = 0;
 }
 
 export interface Race {

@@ -6,7 +6,7 @@ function Sessions() {
     return (
         <BaseListPage<Session>
             title="Sessions"
-            url="/api/sessions"
+            route="/api/sessions"
             renderList={(sessions) => (
                 <List>
                     {sessions?.map((session) => (

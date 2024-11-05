@@ -1,11 +1,13 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
+import { baseUrl } from '../constants';
+import { Race } from '../interfaces/Race';
 import BaseListPageProps from './BaseListPage';
 
 function Races() {
     return (
-        <BaseListPageProps
+        <BaseListPageProps<Race>
             title="Races"
-            url="/api/races"
+            route={`${baseUrl}/api/races`}
             renderList={(races) => (
                 <List>
                     {races?.map((race) => (

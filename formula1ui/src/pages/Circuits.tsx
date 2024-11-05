@@ -6,7 +6,7 @@ function Circuits() {
     return (
         <BaseListPage<Circuit>
             title="Circuits"
-            url="/api/circuits"
+            route="/api/circuits"
             renderList={(circuits) => (
                 <List>
                     {circuits?.map((circuit) => (
