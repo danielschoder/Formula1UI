@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Box, List, ListItem, Typography } from '@mui/material';
 import { Session } from '../interfaces/Session';
 import BaseListPage from './BaseListPage';
 
