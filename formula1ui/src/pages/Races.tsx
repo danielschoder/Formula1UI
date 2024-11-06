@@ -10,6 +10,25 @@ function Races() {
             itemsName="races"
             renderList={(races) => (
                 <List>
+                    <ListItem sx={{ backgroundColor: "#e0e0e0", mb: 1, borderRadius: 1 }}>
+                        <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Season
+                                </Typography>
+                            </Box>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Round
+                                </Typography>
+                            </Box>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Grand Prix
+                                </Typography>
+                            </Box>
+                        </Box>
+                    </ListItem>
                     {races?.map((race) => (
                         <ListItem key={race.id} sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1 }}>
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
@@ -20,11 +39,11 @@ function Races() {
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        Round: {race.round}
+                                        {race.round}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
-                                    <Typography variant="body1" color="text.primary" fontStyle="italic">
+                                    <Typography variant="body1" color="primary">
                                         {race.grandPrix.name}
                                     </Typography>
                                 </Box>
