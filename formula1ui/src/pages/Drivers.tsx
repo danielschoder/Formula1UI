@@ -7,6 +7,7 @@ function Drivers() {
         <BaseListPage<Driver>
             title="Drivers"
             route="/api/drivers"
+            itemsName="drivers"
             renderList={(drivers) => (
                 <List>
                     {drivers?.map((driver) => (

@@ -7,6 +7,7 @@ function Sessions() {
         <BaseListPage<Session>
             title="Sessions"
             route="/api/sessions"
+            itemsName="sessions"
             renderList={(sessions) => (
                 <List>
                     {sessions?.map((session) => (

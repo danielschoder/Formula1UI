@@ -7,6 +7,7 @@ function Seasons() {
         <BaseListPage<Season>
             title="Seasons"
             route="/api/seasons"
+            itemsName="seasons"
             renderList={(seasons) => (
                 <List>
                     {seasons?.map((season) => (

@@ -7,6 +7,7 @@ function Constructors() {
         <BaseListPage<Constructor>
             title="Constructors"
             route="/api/constructors"
+            itemsName="constructors"
             renderList={(constructors) => (
                 <List>
                     {constructors?.map((constructor) => (

@@ -8,14 +8,14 @@ import { useFetchData } from '../hooks/useFetchData';
 interface BaseListPageProps<T> {
     title: string;
     route: string;
+    itemsName: string;
     renderList: (items: T[]) => React.ReactNode;
 }
 
-function BaseListPage<T>({ title, route, renderList } : BaseListPageProps<T>) {
-    const { data, loading, error } = useFetchData<T>(route);
+function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageProps<T>) {
     const [page, setPage] = useState(1);
     const [pageSize] = useState(20);
-    const apiUrl = `${baseUrl}${route}?pageNumber=${page}&pageSize=${pageSize}`;
+    const { data, loading, error } = useFetchData<T>(`${baseUrl}${route}`, itemsName, page, pageSize);
 
     if (loading) { return <Loading />; }
     if (error) { return <Error error={error} />; }
@@ -33,7 +33,7 @@ function BaseListPage<T>({ title, route, renderList } : BaseListPageProps<T>) {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={apiUrl}
+                    href={`${baseUrl}${route}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
