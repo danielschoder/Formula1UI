@@ -6,7 +6,8 @@ function Constructors() {
     return (
         <BaseListPage<Constructor>
             title="Constructors"
-            url="/api/constructors"
+            route="/api/constructors"
+            itemsName="constructors"
             renderList={(constructors) => (
                 <List>
                     {constructors?.map((constructor) => (

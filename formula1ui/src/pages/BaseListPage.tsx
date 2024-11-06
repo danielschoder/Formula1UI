@@ -1,43 +1,71 @@
-import React from 'react';
-import { Container, Typography, Button } from '@mui/material';
-import { useFetchData } from '../hooks/useFetchData';
+import { Box, Button, Container, IconButton, Pagination, Typography } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import React, { useState } from 'react';
 import { baseUrl } from '../constants';
-import Loading from '../components/Loading';
 import Error from '../components/Error';
+import Loading from '../components/Loading';
+import { useFetchData } from '../hooks/useFetchData';
+import { useNavigate } from 'react-router-dom';
 
-interface BaseListPage<T> {
+interface BaseListPageProps<T> {
     title: string;
-    url: string;
-    renderList: (data: T[]) => React.ReactNode; // Function to render the list
+    route: string;
+    itemsName: string;
+    renderList: (items: T[]) => React.ReactNode;
 }
 
-function ApiPage<T>({ title, url, renderList }: BaseListPage<T>) {
-    const apiUrl = `${baseUrl}${url}`;
-    const { data, loading, error } = useFetchData<T[]>(apiUrl);
+function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageProps<T>) {
+    const navigate = useNavigate();
+    const [page, setPage] = useState(1);
+    const [pageSize] = useState(20);
+    const { data, loading, error } = useFetchData<T>(`${baseUrl}${route}`, itemsName, page, pageSize);
 
     if (loading) { return <Loading />; }
     if (error) { return <Error error={error} />; }
 
+    const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };
+
+    const totalPages = Math.ceil((data?.totalCount || 0) / pageSize);
+
     return (
         <Container>
-            <Typography variant="h2" gutterBottom>
-                {title}
-            </Typography>
+            <Box display="flex" alignItems="center" mb={2}>
+                <IconButton onClick={() => navigate('/')} color="primary" style={{ marginRight: '16px' }}>
+                    <ArrowBackIcon fontSize="large" />
+                </IconButton>
+                <Typography variant="h2">
+                    {title}
+                </Typography>
+            </Box>
+
             <Typography gutterBottom>
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={apiUrl}
+                    href={`${baseUrl}${route}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {url}
+                    {route}
                 </Button>
             </Typography>
-            {renderList(data || [])}
+
+            {renderList(data?.items || [])}
+
+            {totalPages > 1 && (
+                <Pagination
+                    count={totalPages}
+                    page={page}
+                    onChange={handlePageChange}
+                    color="primary"
+                    style={{ marginTop: '16px' }}
+                />
+            )}
         </Container>
     );
 }
 
-export default ApiPage;
+export default BaseListPage;

@@ -1,5 +1,8 @@
+import { Race } from "./Race";
+import { SessionType } from "./SessionType";
+
 export interface Session {
     id: string;
-    sessionTypeId: number;
-    raceId: string;
+    sessionType: SessionType;
+    race: Race;
 }

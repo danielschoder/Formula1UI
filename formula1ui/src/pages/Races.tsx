@@ -1,14 +1,34 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import { Race } from '../interfaces/Race';
-import BaseListPage from './BaseListPage';
+import BaseListPageProps from './BaseListPage';
 
 function Races() {
     return (
-        <BaseListPage<Race>
+        <BaseListPageProps<Race>
             title="Races"
-            url="/api/races"
+            route="/api/races"
+            itemsName="races"
             renderList={(races) => (
                 <List>
+                    <ListItem sx={{ backgroundColor: "#e0e0e0", mb: 1, borderRadius: 1 }}>
+                        <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Season
+                                </Typography>
+                            </Box>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Round
+                                </Typography>
+                            </Box>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Grand Prix
+                                </Typography>
+                            </Box>
+                        </Box>
+                    </ListItem>
                     {races?.map((race) => (
                         <ListItem key={race.id} sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1 }}>
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
@@ -17,13 +37,13 @@ function Races() {
                                         {race.seasonYear}
                                     </Typography>
                                 </Box>
-                                <Box flex={1} textAlign="center">
+                                <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        Round: {race.round}
+                                        {race.round}
                                     </Typography>
                                 </Box>
-                                <Box flex={1} textAlign="right">
-                                    <Typography variant="body1" color="text.primary" fontStyle="italic">
+                                <Box flex={1}>
+                                    <Typography variant="body1" color="primary">
                                         {race.grandPrix.name}
                                     </Typography>
                                 </Box>

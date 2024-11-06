@@ -6,7 +6,8 @@ function Results() {
     return (
         <BaseListPage<Result>
             title="Results"
-            url="/api/results"
+            route="/api/results"
+            itemsName="results"
             renderList={(results) => (
                 <List>
                     {results?.map((result) => (
