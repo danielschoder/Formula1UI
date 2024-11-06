@@ -7,7 +7,7 @@ function SessionTypes() {
         <BaseListPage<SessionType>
             title="Session Types"
             route="/api/sessiontypes"
-            itemsName="sessiontypes"
+            itemsName="sessionTypes"
             renderList={(sessiontypes) => (
                 <List>
                     {sessiontypes?.map((sessiontype) => (

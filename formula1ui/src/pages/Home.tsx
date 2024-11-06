@@ -18,7 +18,7 @@ const Home = () => {
     ];
 
     const renderMenuButton = (label: string, path: string) => (
-        <Button variant="text" component={RouterLink} to={path}>
+        <Button key={path} variant="text" component={RouterLink} to={path}>
             {label}
         </Button>
     );
