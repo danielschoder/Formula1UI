@@ -27,6 +27,11 @@ function Races() {
                                     Grand Prix
                                 </Typography>
                             </Box>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Circuit
+                                </Typography>
+                            </Box>
                         </Box>
                     </ListItem>
                     {races?.map((race) => (
@@ -45,6 +50,11 @@ function Races() {
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
                                         {race.grandPrix.name}
+                                    </Typography>
+                                </Box>
+                                <Box flex={1}>
+                                    <Typography variant="body1" color="primary">
+                                        {race.circuit.name}
                                     </Typography>
                                 </Box>
                             </Box>
