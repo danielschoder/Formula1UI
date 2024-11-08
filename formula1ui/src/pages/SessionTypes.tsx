@@ -19,7 +19,7 @@ function SessionTypes() {
                             </Box>
                             <Box flex={1}>
                                 <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Id
+                                    Type
                                 </Typography>
                             </Box>
                         </Box>

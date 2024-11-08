@@ -1,4 +1,4 @@
-import { Box, List, ListItem, Typography } from '@mui/material';
+import { Box, Button, List, ListItem, Typography } from '@mui/material';
 import { GrandPrix } from '../interfaces/GrandPrix.ts';
 import BaseListPage from './BaseListPage.tsx';
 
@@ -19,7 +19,7 @@ function GrandPrixPage() {
                             </Box>
                             <Box flex={1}>
                                 <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Id
+                                    Wikipedia
                                 </Typography>
                             </Box>
                         </Box>
@@ -33,9 +33,15 @@ function GrandPrixPage() {
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
-                                    <Typography variant="body1" color="primary">
-                                        {grandPrixDto.id}
-                                    </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        href={grandPrixDto.wikipediaUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{ textTransform: 'lowercase' }}
+                                    >
+                                        Wikipedia
+                                    </Button>
                                 </Box>
                             </Box>
                         </ListItem>

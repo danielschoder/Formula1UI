@@ -17,7 +17,7 @@ interface BaseListPageProps<T> {
 function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageProps<T>) {
     const navigate = useNavigate();
     const [page, setPage] = useState(1);
-    const [pageSize] = useState(20);
+    const [pageSize] = useState(15);
     const { data, loading, error } = useFetchData<T>(`${baseUrl}${route}`, itemsName, page, pageSize);
 
     if (loading) { return <Loading />; }
@@ -30,7 +30,7 @@ function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageP
     const totalPages = Math.ceil((data?.totalCount || 0) / pageSize);
 
     return (
-        <Container>
+        <Container sx={{ mb: 4 }}>
             <Box display="flex" alignItems="center" mb={2}>
                 <IconButton onClick={() => navigate('/')} color="primary" style={{ marginRight: '16px' }}>
                     <ArrowBackIcon fontSize="large" />
@@ -44,7 +44,7 @@ function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageP
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${route}`}
+                    href={`${baseUrl}${route}?pageNumber=${page}&pageSize=${pageSize}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}

@@ -14,6 +14,16 @@ function Results() {
                         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                             <Box flex={1}>
                                 <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    Year/Round
+                                </Typography>
+                            </Box>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
+                                    GrandPrix
+                                </Typography>
+                            </Box>
+                            <Box flex={1}>
+                                <Typography variant="h6" color="text.primary" fontWeight="bold">
                                     Position
                                 </Typography>
                             </Box>
@@ -39,6 +49,16 @@ function Results() {
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">
+                                        {result.session.race.seasonYear}/{result.session.race.round}
+                                    </Typography>
+                                </Box>
+                                <Box flex={1}>
+                                    <Typography variant="body1" color="primary">
+                                        {result.session.race.grandPrix.name}
+                                    </Typography>
+                                </Box>
+                                <Box flex={1}>
+                                    <Typography variant="body1" color="primary">
                                         {result.position}
                                     </Typography>
                                 </Box>

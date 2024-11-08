@@ -38,7 +38,7 @@ function Seasons() {
                                         href={season.wikipediaUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        style={{ textTransform: 'lowercase', marginLeft: '24px' }} // Fixed margin
+                                        style={{ textTransform: 'lowercase' }}
                                     >
                                         Wikipedia
                                     </Button>
