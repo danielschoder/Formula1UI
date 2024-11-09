@@ -59,7 +59,7 @@ function Results() {
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {result.position}
+                                        {result.ranking}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>

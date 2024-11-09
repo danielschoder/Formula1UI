@@ -4,7 +4,7 @@ import { Session } from "./Session";
 
 export interface Result {
     id: string;
-    position: string;
+    ranking: string;
     points: number;
     session: Session;
     driver: Driver;
