@@ -53,8 +53,6 @@ function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageP
                 </Button>
             </Typography>
 
-            {renderList(data?.items || [])}
-
             {totalPages > 1 && (
                 <Pagination
                     count={totalPages}
@@ -64,6 +62,8 @@ function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageP
                     style={{ marginTop: '16px' }}
                 />
             )}
+
+            {renderList(data?.items || [])}
         </Container>
     );
 }
