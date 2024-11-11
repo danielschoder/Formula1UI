@@ -2,7 +2,7 @@ import { Race } from "./Race";
 import { SessionType } from "./SessionType";
 
 export interface Session {
-    id: string;
+    id: number;
     sessionType: SessionType;
     race: Race;
 }

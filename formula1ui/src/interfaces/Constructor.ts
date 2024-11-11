@@ -1,5 +1,5 @@
 export interface Constructor {
-    id: string;
+    id: number;
     name: string;
     wikipediaUrl: string;
 }

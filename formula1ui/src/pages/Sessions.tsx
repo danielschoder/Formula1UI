@@ -29,7 +29,7 @@ function Sessions() {
                             </Box>
                             <Box flex={1}>
                                 <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Session Type
+                                    Race/Sprint
                                 </Typography>
                             </Box>
                         </Box>

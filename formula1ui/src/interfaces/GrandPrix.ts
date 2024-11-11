@@ -1,5 +1,5 @@
 export interface GrandPrix {
-    id: string;
+    id: number;
     name: string;
     wikipediaUrl: string;
 }

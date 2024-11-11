@@ -1,4 +1,4 @@
 export interface Season {
-    year: string;
+    year: number;
     wikipediaUrl: string;
 }

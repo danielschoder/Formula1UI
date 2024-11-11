@@ -3,7 +3,7 @@ import { Driver } from "./Driver";
 import { Session } from "./Session";
 
 export interface Result {
-    id: string;
+    id: number;
     ranking: string;
     points: number;
     session: Session;

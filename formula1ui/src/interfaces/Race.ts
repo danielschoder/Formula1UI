@@ -2,7 +2,7 @@ import { Circuit } from "./Circuit";
 import { GrandPrix } from "./GrandPrix";
 
 export interface Race {
-    id: string;
+    id: number;
     seasonYear: number;
     round: number;
     grandPrix: GrandPrix;

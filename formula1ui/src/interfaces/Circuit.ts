@@ -1,5 +1,5 @@
 export interface Circuit {
-    id: string;
+    id: number;
     name: string;
     wikipediaUrl: string;
 }
