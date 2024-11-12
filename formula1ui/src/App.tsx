@@ -1,20 +1,25 @@
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Box, Button, CssBaseline, Drawer, IconButton, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material';
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, NavLink } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, IconButton, Drawer, List, CssBaseline, ListItem, ListItemText, Box } from '@mui/material';
+import { NavLink, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Circuits from './pages/Circuits';
 import Constructors from './pages/Constructors';
 import Drivers from './pages/Drivers';
 import GrandPrixPage from './pages/GrandPrixPage';
 import Home from './pages/Home';
-import MenuIcon from '@mui/icons-material/Menu';
 import Races from './pages/Races';
+import RegisterDialog from './pages/RegisterDialog';
 import Results from './pages/Results';
 import Seasons from './pages/Seasons';
 import Sessions from './pages/Sessions';
 import SessionTypes from './pages/SessionTypes';
+import LoginDialog from './pages/LoginDialog';
 
 const App = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [openLoginDialog, setOpenLoginDialog] = useState(false);
+    const [openRegisterDialog, setOpenRegisterDialog] = useState(false);
 
     const menuItems = [
         { label: 'Home', path: '/' },
@@ -28,6 +33,41 @@ const App = () => {
         { label: "Results", path: "/results" },
         { label: "Session Types", path: "/sessiontypes" }
     ];
+
+
+    const handleLoginOpen = () => {
+        setOpenLoginDialog(true);
+    };
+
+    const handleLoginClose = () => {
+        setOpenLoginDialog(false);
+    };
+
+    const handleLoginSubmit = (formData: { username: string; password: string }) => {
+        // Handle login logic here (e.g., make an API call to authenticate)
+        console.log('Logging in with:', formData);
+        setIsAuthenticated(true);
+        setOpenLoginDialog(false);
+    };
+
+    const handleLogout = () => {
+        setIsAuthenticated(false); // Replace with logout logic
+    };
+
+    const handleRegisterOpen = () => {
+        setOpenRegisterDialog(true);
+    };
+
+    const handleRegisterClose = () => {
+        setOpenRegisterDialog(false);
+    };
+
+    const handleRegisterSubmit = (formData: { username: string; email: string; password: string }) => {
+        // Handle register logic here (e.g., make an API call)
+        console.log('Registering user with:', formData);
+        setIsAuthenticated(true); // Automatically log the user in after registration
+        setOpenRegisterDialog(false); // Close the dialog
+    };
 
     return (
         <Router>
@@ -45,7 +85,33 @@ const App = () => {
                     <Typography variant="h6" component="div">
                         Formula 1 APIs
                     </Typography>
+                    <Box sx={{ ml: 'auto' }}>
+                        {isAuthenticated ? (
+                            <Button color="inherit" onClick={handleLogout}>
+                                Logout
+                            </Button>
+                        ) : (
+                            <>
+                                <Button color="inherit" onClick={handleLoginOpen}>
+                                    Login
+                                </Button>
+                                    <Button color="inherit" onClick={handleRegisterOpen}>
+                                    Register
+                                </Button>
+                            </>
+                            )}
+                    </Box>
                 </Toolbar>
+                <LoginDialog
+                    open={openLoginDialog}
+                    onClose={handleLoginClose}
+                    onLogin={handleLoginSubmit}
+                />
+                <RegisterDialog
+                    open={openRegisterDialog}
+                    onClose={handleRegisterClose}
+                    onRegister={handleRegisterSubmit}
+                />
             </AppBar>
 
             <Drawer anchor="left" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
