@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
+import { AuthService } from '../hooks/AuthService';
 
 interface LoginDialogProps {
     open: boolean;
     onClose: () => void;
-    onLogin: (formData: { username: string; password: string }) => void;
+    onLogin: () => void;
+    authService: AuthService;
 }
 
-const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin }) => {
+const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin, authService }) => {
     const [loginForm, setLoginForm] = useState({
-        username: '',
+        email: '',
         password: '',
     });
 
@@ -21,9 +23,15 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin }) => 
         }));
     };
 
-    const handleLoginSubmit = () => {
-        onLogin(loginForm);
-        setLoginForm({ username: '', password: '' });
+    const handleLoginSubmit = async () => {
+        const success = await authService.login(loginForm.email, loginForm.password);
+        if (success) {
+            onLogin();  // Notify parent that login was successful
+            setLoginForm({ email: '', password: '' });
+            onClose();
+        } else {
+            alert('Invalid credentials');
+        }
     };
 
     return (
@@ -33,12 +41,12 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin }) => 
                 <TextField
                     autoFocus
                     margin="dense"
-                    name="username"
-                    label="Username"
+                    name="email"
+                    label="email"
                     type="text"
                     fullWidth
                     variant="standard"
-                    value={loginForm.username}
+                    value={loginForm.email}
                     onChange={handleInputChange}
                 />
                 <TextField

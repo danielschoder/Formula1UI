@@ -14,12 +14,14 @@ import Seasons from './pages/Seasons';
 import Sessions from './pages/Sessions';
 import SessionTypes from './pages/SessionTypes';
 import LoginDialog from './pages/LoginDialog';
+import { AuthService } from './hooks/AuthService';
 
 const App = () => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [openLoginDialog, setOpenLoginDialog] = useState(false);
     const [openRegisterDialog, setOpenRegisterDialog] = useState(false);
+    const authService = new AuthService();
 
     const menuItems = [
         { label: 'Home', path: '/' },
@@ -34,7 +36,6 @@ const App = () => {
         { label: "Session Types", path: "/sessiontypes" }
     ];
 
-
     const handleLoginOpen = () => {
         setOpenLoginDialog(true);
     };
@@ -43,14 +44,13 @@ const App = () => {
         setOpenLoginDialog(false);
     };
 
-    const handleLoginSubmit = (formData: { username: string; password: string }) => {
-        // Handle login logic here (e.g., make an API call to authenticate)
-        console.log('Logging in with:', formData);
+    const handleLoginSubmit = () => {
         setIsAuthenticated(true);
         setOpenLoginDialog(false);
     };
 
     const handleLogout = () => {
+        authService.logout();
         setIsAuthenticated(false); // Replace with logout logic
     };
 
@@ -106,6 +106,7 @@ const App = () => {
                     open={openLoginDialog}
                     onClose={handleLoginClose}
                     onLogin={handleLoginSubmit}
+                    authService={authService}
                 />
                 <RegisterDialog
                     open={openRegisterDialog}
