@@ -1,12 +1,11 @@
 import { LoginDto } from '../interfaces/LoginDto';
 
 export class AuthService {
-    // Method for logging in
     async login(email: string, password: string): Promise<boolean> {
         const loginDto = new LoginDto(email, password);
 
         try {
-            const response = await fetch('https://localhost:7208/api/login', {
+            const response = await fetch('https://schoderauth.azurewebsites.net/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -16,28 +15,22 @@ export class AuthService {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Login successful:', data);
-
-                // Store JWT token in localStorage
                 localStorage.setItem('jwt', data.jwt);
-
-                return true;  // Successful login
+                return true;
             } else {
                 throw new Error('Login failed');
             }
         } catch (error) {
             console.error('Login error:', error);
-            return false;  // Failed login
+            return false;
         }
     }
 
-    // Method to check if the user is authenticated (by checking the JWT in localStorage)
     isAuthenticated(): boolean {
         const jwt = localStorage.getItem('jwt');
-        return !!jwt;  // Returns true if a JWT exists in localStorage
+        return !!jwt;
     }
 
-    // Method to logout (clear the JWT from localStorage)
     logout() {
         localStorage.removeItem('jwt');
     }

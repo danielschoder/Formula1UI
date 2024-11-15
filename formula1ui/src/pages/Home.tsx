@@ -25,7 +25,7 @@ const Home = () => {
 
     return (
         <Container>
-            <Typography variant="h2" gutterBottom>
+            <Typography variant="h2" gutterBottom sx={{ mt: 2 }}>
                 Formula 1 APIs
             </Typography>
             <Typography variant="body1" sx={{ marginBottom: 2 }}>
