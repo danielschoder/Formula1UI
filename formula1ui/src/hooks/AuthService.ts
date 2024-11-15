@@ -1,11 +1,25 @@
+import axios from 'axios';
 import { LoginDto } from '../interfaces/LoginDto';
 
+const baseUrl = 'https://schoderauth.azurewebsites.net';
+
 export class AuthService {
+
+    async logVisitor(): Promise<void> {
+        (async () => {
+            try {
+                await axios.post(`${baseUrl}/api/visitors`, {});
+            } catch (error) {
+                console.error('Error posting visitor data', error);
+            }
+        })();
+    }
+
     async login(email: string, password: string): Promise<boolean> {
         const loginDto = new LoginDto(email, password);
 
         try {
-            const response = await fetch('https://schoderauth.azurewebsites.net/api/login', {
+            const response = await fetch(`${baseUrl}/api/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

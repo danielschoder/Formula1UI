@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AppBarComponent from './components/AppBarComponent';
 import DrawerComponent from './components/DrawerComponent';
@@ -19,13 +19,17 @@ const App: React.FC = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoginDialogOpen, setOpenLoginDialog] = useState(false);
     const [isRegisterDialogOpen, setOpenRegisterDialog] = useState(false);
-    const authService = new AuthService();
+    const authService = useMemo(() => new AuthService(), []);
 
     const handleLoginOpen = () => setOpenLoginDialog(true);
     const handleLoginSubmit = () => setIsAuthenticated(true);
     const handleLogout = () => setIsAuthenticated(false);
     const handleRegisterOpen = () => setOpenRegisterDialog(true);
     const handleRegisterSubmit = () => setIsAuthenticated(true);
+
+    useEffect(() => {
+        authService.logVisitor();
+    }, [authService]); 
 
     return (
         <Router>
