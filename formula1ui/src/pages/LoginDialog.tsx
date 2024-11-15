@@ -1,17 +1,21 @@
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, TextField, Button } from '@mui/material';
+import { AuthService } from '../hooks/AuthService';
 
 interface LoginDialogProps {
     open: boolean;
     onClose: () => void;
-    onLogin: (formData: { username: string; password: string }) => void;
+    onLogin: () => void;
+    authService: AuthService;
 }
 
-const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin }) => {
-    const [loginForm, setLoginForm] = useState({
-        username: '',
-        password: '',
-    });
+interface LoginForm {
+    email: string;
+    password: string;
+}
+
+const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin, authService }) => {
+    const [loginForm, setLoginForm] = useState<LoginForm>({ email: '', password: '' });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -21,9 +25,15 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin }) => 
         }));
     };
 
-    const handleLoginSubmit = () => {
-        onLogin(loginForm);
-        setLoginForm({ username: '', password: '' });
+    const handleLoginSubmit = async () => {
+        const success = await authService.login(loginForm.email, loginForm.password);
+        if (success) {
+            onLogin();
+            setLoginForm({ email: '', password: '' });
+            onClose();
+        } else {
+            alert('Invalid credentials');
+        }
     };
 
     return (
@@ -33,12 +43,12 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin }) => 
                 <TextField
                     autoFocus
                     margin="dense"
-                    name="username"
-                    label="Username"
+                    name="email"
+                    label="Email"
                     type="text"
                     fullWidth
                     variant="standard"
-                    value={loginForm.username}
+                    value={loginForm.email}
                     onChange={handleInputChange}
                 />
                 <TextField
