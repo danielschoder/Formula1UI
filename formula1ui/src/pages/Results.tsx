@@ -49,12 +49,12 @@ function Results() {
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">
-                                        {result.session.race.seasonYear}/{result.session.race.round}
+                                        {result.seasonYear}/{result.round}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {result.session.race.grandPrix.name}
+                                        {result.grandPrixName}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
@@ -69,12 +69,12 @@ function Results() {
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {result.driver.name}
+                                        {result.driverName}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {result.constructor.name}
+                                        {result.constructorName}
                                     </Typography>
                                 </Box>
                             </Box>
