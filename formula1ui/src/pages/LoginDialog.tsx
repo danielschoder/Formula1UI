@@ -1,6 +1,7 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { AuthService } from '../hooks/AuthService';
+import { LoginDto } from '../dtos/LoginDto';
 
 interface LoginDialogProps {
     open: boolean;
@@ -9,13 +10,9 @@ interface LoginDialogProps {
     authService: AuthService;
 }
 
-interface LoginForm {
-    email: string;
-    password: string;
-}
-
 const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin, authService }) => {
-    const [loginForm, setLoginForm] = useState<LoginForm>({ email: '', password: '' });
+    const [loginForm, setLoginForm] = useState<LoginDto>(new LoginDto());
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -26,13 +23,14 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin, authS
     };
 
     const handleLoginSubmit = async () => {
-        const success = await authService.login(loginForm.email, loginForm.password);
-        if (success) {
-            onLogin();
-            setLoginForm({ email: '', password: '' });
-            onClose();
+        const authResponse = await authService.login(loginForm);
+        if (authResponse.errorMessage) {
+            setErrorMessage(authResponse.errorMessage);
         } else {
-            alert('Invalid credentials');
+            onLogin();
+            setLoginForm(new LoginDto());
+            setErrorMessage(''); 
+            onClose();
         }
     };
 
@@ -61,7 +59,11 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin, authS
                     value={loginForm.password}
                     onChange={handleInputChange}
                 />
-            </DialogContent>
+                {errorMessage && (
+                    <Typography color="error" sx={{ mt: 1 }}>
+                        {errorMessage}
+                    </Typography>
+                )}            </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="primary">
                     Cancel

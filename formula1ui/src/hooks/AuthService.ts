@@ -1,8 +1,14 @@
 import axios from 'axios';
-import { LoginDto } from '../interfaces/LoginDto';
+import { LoginDto } from '../dtos/LoginDto';
+import { JwtPayload, jwtDecode } from 'jwt-decode';
+import { AuthResponseDto } from '../dtos/AuthResponseDto';
 
 const baseUrl = 'https://schoderauth.azurewebsites.net';
 
+interface CustomJwtPayload extends JwtPayload {
+    sub?: string;
+    email?: string;
+}
 export class AuthService {
 
     async logVisitor(): Promise<void> {
@@ -15,9 +21,7 @@ export class AuthService {
         })();
     }
 
-    async login(email: string, password: string): Promise<boolean> {
-        const loginDto = new LoginDto(email, password);
-
+    async login(loginDto: LoginDto): Promise<AuthResponseDto> {
         try {
             const response = await fetch(`${baseUrl}/api/login`, {
                 method: 'POST',
@@ -28,15 +32,16 @@ export class AuthService {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem('jwt', data.jwt);
-                return true;
+                const authResponseDto: AuthResponseDto = await response.json();
+                localStorage.setItem('jwt', authResponseDto.jwt);
+                return authResponseDto;
+            } else if (response.status === 401) {
+                return new AuthResponseDto('', 'Email/password invalid.');
             } else {
-                throw new Error('Login failed');
+                return new AuthResponseDto('', response.statusText);
             }
         } catch (error) {
-            console.error('Login error:', error);
-            return false;
+            return new AuthResponseDto('', error instanceof Error ? error.message : String(error));
         }
     }
 
@@ -47,5 +52,29 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('jwt');
+    }
+
+    getUserId(): string | null {
+        const decoded = this.getDecodedJwt();
+        return decoded?.sub || null;
+    }
+
+    getUserEmail(): string | null {
+        const decoded = this.getDecodedJwt();
+        return decoded?.email || null;
+    }
+
+    getDecodedJwt(): CustomJwtPayload | null {
+        const jwt = localStorage.getItem('jwt');
+        if (!jwt) {
+            return null;
+        }
+        try {
+            const decodedToken = jwtDecode<CustomJwtPayload>(jwt);
+            return decodedToken;
+        } catch (error) {
+            console.error('Failed to decode JWT:', error);
+            return null;
+        }
     }
 }

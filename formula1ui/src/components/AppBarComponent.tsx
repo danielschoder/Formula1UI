@@ -49,9 +49,14 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
             </Typography>
             <Box sx={{ ml: 'auto' }}>
                 {isAuthenticated ? (
-                    <Button color="inherit" onClick={handleLogout}>
-                        Logout
-                    </Button>
+                    <>
+                        <Button color="inherit">
+                            {authService.getUserEmail()}
+                        </Button>
+                        <Button color="inherit" onClick={handleLogout}>
+                            Logout
+                        </Button>
+                    </>
                 ) : (
                     <>
                         <Button color="inherit" onClick={handleLoginOpen}>
