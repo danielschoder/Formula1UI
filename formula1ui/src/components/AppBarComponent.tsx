@@ -16,7 +16,7 @@ interface AppBarComponentProps {
     isRegisterDialogOpen: boolean;
     setOpenRegisterDialog: React.Dispatch<React.SetStateAction<boolean>>;
     handleRegisterOpen: () => void;
-    handleRegisterSubmit: (formData: { username: string; email: string; password: string }) => void;
+    handleRegisterSubmit: () => void;
     handleLogout: () => void;
 }
 
@@ -79,6 +79,7 @@ const AppBarComponent: React.FC<AppBarComponentProps> = ({
             open={isRegisterDialogOpen}
             onClose={() => setOpenRegisterDialog(false)}
             onRegister={handleRegisterSubmit}
+            authService={authService}
         />
     </AppBar>
 );

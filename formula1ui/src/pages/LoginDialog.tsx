@@ -63,7 +63,8 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, onClose, onLogin, authS
                     <Typography color="error" sx={{ mt: 1 }}>
                         {errorMessage}
                     </Typography>
-                )}            </DialogContent>
+                )}
+            </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="primary">
                     Cancel

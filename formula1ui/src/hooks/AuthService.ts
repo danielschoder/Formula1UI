@@ -2,6 +2,7 @@ import axios from 'axios';
 import { LoginDto } from '../dtos/LoginDto';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { AuthResponseDto } from '../dtos/AuthResponseDto';
+import { RegisterDto } from '../dtos/RegisterDto';
 
 const baseUrl = 'https://schoderauth.azurewebsites.net';
 
@@ -37,6 +38,28 @@ export class AuthService {
                 return authResponseDto;
             } else if (response.status === 401) {
                 return new AuthResponseDto('', 'Email/password invalid.');
+            } else {
+                return new AuthResponseDto('', response.statusText);
+            }
+        } catch (error) {
+            return new AuthResponseDto('', error instanceof Error ? error.message : String(error));
+        }
+    }
+
+    async register(registerDto: RegisterDto): Promise<AuthResponseDto> {
+        try {
+            const response = await fetch(`${baseUrl}/api/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(registerDto),
+            });
+
+            if (response.ok) {
+                const authResponseDto: AuthResponseDto = await response.json();
+                localStorage.setItem('jwt', authResponseDto.jwt);
+                return authResponseDto;
             } else {
                 return new AuthResponseDto('', response.statusText);
             }

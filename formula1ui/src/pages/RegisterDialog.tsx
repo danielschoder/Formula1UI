@@ -1,18 +1,18 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { AuthService } from '../hooks/AuthService';
+import { RegisterDto } from '../dtos/RegisterDto';
 
 interface RegisterDialogProps {
     open: boolean;
     onClose: () => void;
-    onRegister: (formData: { username: string; email: string; password: string }) => void;
+    onRegister: () => void;
+    authService: AuthService;
 }
 
-const RegisterDialog: React.FC<RegisterDialogProps> = ({ open, onClose, onRegister }) => {
-    const [registerForm, setRegisterForm] = useState({
-        username: '',
-        email: '',
-        password: '',
-    });
+const RegisterDialog: React.FC<RegisterDialogProps> = ({ open, onClose, onRegister, authService }) => {
+    const [registerForm, setRegisterForm] = useState<RegisterDto>(new RegisterDto());
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -22,26 +22,22 @@ const RegisterDialog: React.FC<RegisterDialogProps> = ({ open, onClose, onRegist
         }));
     };
 
-    const handleRegisterSubmit = () => {
-        onRegister(registerForm);
-        setRegisterForm({ username: '', email: '', password: '' });
+    const handleRegisterSubmit = async () => {
+        const authResponse = await authService.register(registerForm);
+        if (authResponse.errorMessage) {
+            setErrorMessage(authResponse.errorMessage);
+        } else {
+            onRegister();
+            setRegisterForm(new RegisterDto());
+            setErrorMessage('');
+            onClose();
+        }
     };
 
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Register</DialogTitle>
             <DialogContent>
-                <TextField
-                    autoFocus
-                    margin="dense"
-                    name="username"
-                    label="Username"
-                    type="text"
-                    fullWidth
-                    variant="standard"
-                    value={registerForm.username}
-                    onChange={handleInputChange}
-                />
                 <TextField
                     margin="dense"
                     name="email"
@@ -62,6 +58,11 @@ const RegisterDialog: React.FC<RegisterDialogProps> = ({ open, onClose, onRegist
                     value={registerForm.password}
                     onChange={handleInputChange}
                 />
+                {errorMessage && (
+                    <Typography color="error" sx={{ mt: 1 }}>
+                        {errorMessage}
+                    </Typography>
+                )}
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="primary">
