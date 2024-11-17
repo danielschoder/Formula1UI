@@ -31,7 +31,7 @@ function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageP
 
     return (
         <Container sx={{ mb: 4 }}>
-            <Box display="flex" alignItems="center" mb={2}>
+            <Box display="flex" alignItems="center" mb={2} mt={2}>
                 <IconButton onClick={() => navigate('/')} color="primary" style={{ marginRight: '16px' }}>
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>

@@ -25,20 +25,20 @@ const Home = () => {
 
     return (
         <Container>
-            <Typography variant="h2" gutterBottom sx={{ mt: 2 }}>
+            <Typography variant="h2" gutterBottom mt={2}>
                 Formula 1 APIs
             </Typography>
-            <Typography variant="body1" sx={{ marginBottom: 2 }}>
+            <Typography variant="body1" mb={2}>
                 Welcome to the most accurate Formula 1 data!
             </Typography>
 
-            <Stack spacing={2} alignItems="flex-start" sx={{ marginBottom: 2 }}>
+            <Stack spacing={2} alignItems="flex-start" mb={2}>
                 {menuItems.map((item) => renderMenuButton(item.label, item.path))}
             </Stack>
 
             <Divider sx={{ marginBottom: 2 }} />
 
-            <Typography sx={{ marginBottom: 2 }}>
+            <Typography mb={2}>
                 <Button
                     variant="outlined"
                     color="primary"
@@ -49,7 +49,7 @@ const Home = () => {
                     API documentation
                 </Button>
             </Typography>
-            <Typography sx={{ marginBottom: 2 }}>
+            <Typography mb={2}>
                 <Button
                     variant="outlined"
                     color="primary"
