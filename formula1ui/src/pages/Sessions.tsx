@@ -14,12 +14,7 @@ function Sessions() {
                         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                             <Box flex={1}>
                                 <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Season
-                                </Typography>
-                            </Box>
-                            <Box flex={1}>
-                                <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Round
+                                    Season/Round
                                 </Typography>
                             </Box>
                             <Box flex={1}>
@@ -39,22 +34,17 @@ function Sessions() {
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">
-                                        {session.race.seasonYear}
+                                        {session.seasonYear}/{session.round}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {session.race.round}
+                                        {session.grandPrixName}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {session.race.grandPrix.name}
-                                    </Typography>
-                                </Box>
-                                <Box flex={1}>
-                                    <Typography variant="body1" color="primary">
-                                        {session.sessionType.description}
+                                        {session.sessionTypeDescription}
                                     </Typography>
                                 </Box>
                             </Box>

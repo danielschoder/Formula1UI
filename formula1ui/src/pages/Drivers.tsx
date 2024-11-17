@@ -1,4 +1,4 @@
-import { Box, Button, List, ListItem, Typography } from '@mui/material';
+import { Box, List, ListItem, Typography } from '@mui/material';
 import { Driver } from '../interfaces/Driver';
 import BaseListPage from './BaseListPage';
 
@@ -17,11 +17,11 @@ function Drivers() {
                                     Name
                                 </Typography>
                             </Box>
-                            <Box flex={1}>
-                                <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Wikipedia
-                                </Typography>
-                            </Box>
+                        {/*    <Box flex={1}>*/}
+                        {/*        <Typography variant="h6" color="text.primary" fontWeight="bold">*/}
+                        {/*            Wikipedia*/}
+                        {/*        </Typography>*/}
+                        {/*    </Box>*/}
                         </Box>
                     </ListItem>
                     {drivers?.map((driver) => (
@@ -32,17 +32,17 @@ function Drivers() {
                                         {driver.name}
                                     </Typography>
                                 </Box>
-                                <Box flex={1}>
-                                    <Button
-                                        variant="outlined"
-                                        href={driver.wikipediaUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{ textTransform: 'lowercase' }}
-                                    >
-                                        Wikipedia
-                                    </Button>
-                                </Box>
+                            {/*    <Box flex={1}>*/}
+                            {/*        <Button*/}
+                            {/*            variant="outlined"*/}
+                            {/*            href={driver.wikipediaUrl}*/}
+                            {/*            target="_blank"*/}
+                            {/*            rel="noopener noreferrer"*/}
+                            {/*            style={{ textTransform: 'lowercase' }}*/}
+                            {/*        >*/}
+                            {/*            Wikipedia*/}
+                            {/*        </Button>*/}
+                            {/*    </Box>*/}
                             </Box>
                         </ListItem>
                     ))}

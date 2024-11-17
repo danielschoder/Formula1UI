@@ -1,4 +1,4 @@
-import { Box, Button, List, ListItem, Typography } from '@mui/material';
+import { Box, List, ListItem, Typography } from '@mui/material';
 import { Circuit } from '../interfaces/Circuit';
 import BaseListPage from './BaseListPage';
 
@@ -17,11 +17,11 @@ function Circuits() {
                                     Name
                                 </Typography>
                             </Box>
-                            <Box flex={1}>
-                                <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Wikipedia
-                                </Typography>
-                            </Box>
+                        {/*    <Box flex={1}>*/}
+                        {/*        <Typography variant="h6" color="text.primary" fontWeight="bold">*/}
+                        {/*            Wikipedia*/}
+                        {/*        </Typography>*/}
+                        {/*    </Box>*/}
                         </Box>
                     </ListItem>
                     {circuits?.map((circuit) => (
@@ -32,17 +32,17 @@ function Circuits() {
                                         {circuit.name}
                                     </Typography>
                                 </Box>
-                                <Box flex={1}>
-                                    <Button
-                                        variant="outlined"
-                                        href={circuit.wikipediaUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{ textTransform: 'lowercase' }}
-                                    >
-                                        Wikipedia
-                                    </Button>
-                                </Box>
+                            {/*    <Box flex={1}>*/}
+                            {/*        <Button*/}
+                            {/*            variant="outlined"*/}
+                            {/*            href={circuit.wikipediaUrl}*/}
+                            {/*            target="_blank"*/}
+                            {/*            rel="noopener noreferrer"*/}
+                            {/*            style={{ textTransform: 'lowercase' }}*/}
+                            {/*        >*/}
+                            {/*            Wikipedia*/}
+                            {/*        </Button>*/}
+                            {/*    </Box>*/}
                             </Box>
                         </ListItem>
                     ))}

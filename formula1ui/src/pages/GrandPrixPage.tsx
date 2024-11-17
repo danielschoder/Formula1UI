@@ -1,4 +1,4 @@
-import { Box, Button, List, ListItem, Typography } from '@mui/material';
+import { Box, List, ListItem, Typography } from '@mui/material';
 import { GrandPrix } from '../interfaces/GrandPrix.ts';
 import BaseListPage from './BaseListPage.tsx';
 
@@ -17,11 +17,11 @@ function GrandPrixPage() {
                                     Name
                                 </Typography>
                             </Box>
-                            <Box flex={1}>
-                                <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Wikipedia
-                                </Typography>
-                            </Box>
+                        {/*    <Box flex={1}>*/}
+                        {/*        <Typography variant="h6" color="text.primary" fontWeight="bold">*/}
+                        {/*            Wikipedia*/}
+                        {/*        </Typography>*/}
+                        {/*    </Box>*/}
                         </Box>
                     </ListItem>
                     {grandPrixDtos?.map((grandPrixDto) => (
@@ -32,17 +32,17 @@ function GrandPrixPage() {
                                         {grandPrixDto.name}
                                     </Typography>
                                 </Box>
-                                <Box flex={1}>
-                                    <Button
-                                        variant="outlined"
-                                        href={grandPrixDto.wikipediaUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{ textTransform: 'lowercase' }}
-                                    >
-                                        Wikipedia
-                                    </Button>
-                                </Box>
+                            {/*    <Box flex={1}>*/}
+                            {/*        <Button*/}
+                            {/*            variant="outlined"*/}
+                            {/*            href={grandPrixDto.wikipediaUrl}*/}
+                            {/*            target="_blank"*/}
+                            {/*            rel="noopener noreferrer"*/}
+                            {/*            style={{ textTransform: 'lowercase' }}*/}
+                            {/*        >*/}
+                            {/*            Wikipedia*/}
+                            {/*        </Button>*/}
+                            {/*    </Box>*/}
                             </Box>
                         </ListItem>
                     ))}

@@ -14,7 +14,7 @@ function Results() {
                         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                             <Box flex={1}>
                                 <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Year/Round
+                                    Season/Round
                                 </Typography>
                             </Box>
                             <Box flex={1}>

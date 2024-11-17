@@ -1,4 +1,4 @@
-import { Box, Button, List, ListItem, Typography } from '@mui/material';
+import { Box, List, ListItem, Typography } from '@mui/material';
 import { Constructor } from '../interfaces/Constructor';
 import BaseListPage from './BaseListPage';
 
@@ -17,11 +17,11 @@ function Constructors() {
                                     Name
                                 </Typography>
                             </Box>
-                            <Box flex={1}>
-                                <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Wikipedia
-                                </Typography>
-                            </Box>
+                        {/*    <Box flex={1}>*/}
+                        {/*        <Typography variant="h6" color="text.primary" fontWeight="bold">*/}
+                        {/*            Wikipedia*/}
+                        {/*        </Typography>*/}
+                        {/*    </Box>*/}
                         </Box>
                     </ListItem>
                     {constructors?.map((constructor) => (
@@ -32,17 +32,17 @@ function Constructors() {
                                         {constructor.name}
                                     </Typography>
                                 </Box>
-                                <Box flex={1}>
-                                    <Button
-                                        variant="outlined"
-                                        href={constructor.wikipediaUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        style={{ textTransform: 'lowercase' }}
-                                    >
-                                        Wikipedia
-                                    </Button>
-                                </Box>
+                            {/*    <Box flex={1}>*/}
+                            {/*        <Button*/}
+                            {/*            variant="outlined"*/}
+                            {/*            href={constructor.wikipediaUrl}*/}
+                            {/*            target="_blank"*/}
+                            {/*            rel="noopener noreferrer"*/}
+                            {/*            style={{ textTransform: 'lowercase' }}*/}
+                            {/*        >*/}
+                            {/*            Wikipedia*/}
+                            {/*        </Button>*/}
+                            {/*    </Box>*/}
                             </Box>
                         </ListItem>
                     ))}

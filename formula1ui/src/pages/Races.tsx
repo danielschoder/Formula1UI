@@ -14,12 +14,7 @@ function Races() {
                         <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                             <Box flex={1}>
                                 <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Season
-                                </Typography>
-                            </Box>
-                            <Box flex={1}>
-                                <Typography variant="h6" color="text.primary" fontWeight="bold">
-                                    Round
+                                    Season/Round
                                 </Typography>
                             </Box>
                             <Box flex={1}>
@@ -39,22 +34,17 @@ function Races() {
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">
-                                        {race.seasonYear}
+                                        {race.seasonYear}/{race.round}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {race.round}
+                                        {race.grandPrixName}
                                     </Typography>
                                 </Box>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="primary">
-                                        {race.grandPrix.name}
-                                    </Typography>
-                                </Box>
-                                <Box flex={1}>
-                                    <Typography variant="body1" color="primary">
-                                        {race.circuit.name}
+                                        {race.circuitName}
                                     </Typography>
                                 </Box>
                             </Box>
