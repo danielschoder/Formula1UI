@@ -4,13 +4,16 @@ import AppBarComponent from './components/AppBarComponent';
 import DrawerComponent from './components/DrawerComponent';
 import { AuthService } from './hooks/AuthService';
 import Circuits from './pages/Circuits';
+import ConstructorDetails from './pages/ConstructorDetails';
 import Constructors from './pages/Constructors';
+import DriverDetails from './pages/DriverDetails';
 import Drivers from './pages/Drivers';
 import GrandPrixPage from './pages/GrandPrixPage';
 import Home from './pages/Home';
 import Races from './pages/Races';
 import Results from './pages/Results';
 import Seasons from './pages/Seasons';
+import SessionDetails from './pages/SessionDetails';
 import Sessions from './pages/Sessions';
 import SessionTypes from './pages/SessionTypes';
 
@@ -56,10 +59,13 @@ const App: React.FC = () => {
                 <Route path="/seasons" element={<Seasons />} />
                 <Route path="/grandprix" element={<GrandPrixPage />} />
                 <Route path="/drivers" element={<Drivers />} />
+                <Route path="/drivers/:driverId" element={<DriverDetails />} />
                 <Route path="/constructors" element={<Constructors />} />
+                <Route path="/constructors/:constructorId" element={<ConstructorDetails />} />
                 <Route path="/circuits" element={<Circuits />} />
                 <Route path="/races" element={<Races />} />
                 <Route path="/sessions" element={<Sessions />} />
+                <Route path="/sessions/:sessionId" element={<SessionDetails />} />
                 <Route path="/results" element={<Results />} />
                 <Route path="/sessiontypes" element={<SessionTypes />} />
             </Routes>

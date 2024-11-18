@@ -1,4 +1,4 @@
-export interface Constructor {
+export interface DriverDto {
     id: number;
     name: string;
     wikipediaUrl: string;

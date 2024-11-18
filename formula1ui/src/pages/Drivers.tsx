@@ -1,10 +1,13 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { Driver } from '../interfaces/Driver';
+import { useNavigate } from 'react-router-dom';
+import { DriverDto } from '../interfaces/DriverDto';
 import BaseListPage from './BaseListPage';
 
 function Drivers() {
+    const navigate = useNavigate();
+
     return (
-        <BaseListPage<Driver>
+        <BaseListPage<DriverDto>
             title="Drivers"
             route="/api/drivers"
             itemsName="drivers"
@@ -25,7 +28,11 @@ function Drivers() {
                         </Box>
                     </ListItem>
                     {drivers?.map((driver) => (
-                        <ListItem key={driver.id} sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1 }}>
+                        <ListItem
+                            key={driver.id}
+                            sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1, cursor: 'pointer' }}
+                            onClick={() => navigate(`/drivers/${driver.id}`)}
+                        >
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">

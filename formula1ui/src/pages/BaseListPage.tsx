@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { baseUrl } from '../constants';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import { useFetchData } from '../hooks/useFetchData';
+import { useFetchPaginatedData } from '../hooks/useFetchPaginatedData';
 import { useNavigate } from 'react-router-dom';
 
 interface BaseListPageProps<T> {
@@ -16,15 +16,20 @@ interface BaseListPageProps<T> {
 
 function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageProps<T>) {
     const navigate = useNavigate();
-    const [page, setPage] = useState(1);
+    const routeKey = `page_${route.slice(1)}`;
+    const [pageNumber, setPageNumber] = useState<number>(() => {
+        const storedPage = localStorage.getItem(routeKey);
+        return storedPage ? parseInt(storedPage, 10) : 1;
+    });
     const [pageSize] = useState(15);
-    const { data, loading, error } = useFetchData<T>(`${baseUrl}${route}`, itemsName, page, pageSize);
+    const { data, loading, error } = useFetchPaginatedData<T>(`${baseUrl}${route}`, itemsName, pageNumber, pageSize);
 
     if (loading) { return <Loading />; }
     if (error) { return <Error error={error} />; }
 
     const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
-        setPage(value);
+        setPageNumber(value);
+        localStorage.setItem(routeKey, value.toString());
     };
 
     const totalPages = Math.ceil((data?.totalCount || 0) / pageSize);
@@ -44,7 +49,7 @@ function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageP
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${route}?pageNumber=${page}&pageSize=${pageSize}`}
+                    href={`${baseUrl}${route}?pageNumber=${pageNumber}&pageSize=${pageSize}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
@@ -56,7 +61,7 @@ function BaseListPage<T>({ title, route, itemsName, renderList } : BaseListPageP
             {totalPages > 1 && (
                 <Pagination
                     count={totalPages}
-                    page={page}
+                    page={pageNumber}
                     onChange={handlePageChange}
                     color="primary"
                     style={{ marginTop: '16px' }}

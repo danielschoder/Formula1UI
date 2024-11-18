@@ -1,10 +1,13 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { Session } from '../interfaces/Session';
+import { SessionDto } from '../interfaces/SessionDto';
 import BaseListPage from './BaseListPage';
+import { useNavigate } from 'react-router-dom';
 
 function Sessions() {
+    const navigate = useNavigate();
+
     return (
-        <BaseListPage<Session>
+        <BaseListPage<SessionDto>
             title="Sessions"
             route="/api/sessions"
             itemsName="sessions"
@@ -30,7 +33,11 @@ function Sessions() {
                         </Box>
                     </ListItem>
                     {sessions?.map((session) => (
-                        <ListItem key={session.id} sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1 }}>
+                        <ListItem
+                            key={session.id}
+                            sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1, cursor: 'pointer' }}
+                            onClick={() => navigate(`/sessions/${session.id}`)}
+                        >
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">

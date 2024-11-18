@@ -1,4 +1,4 @@
-export interface Session {
+export interface SessionDto {
     id: number;
     seasonYear: number;
     round: number;
