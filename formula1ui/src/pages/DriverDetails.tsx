@@ -12,7 +12,7 @@ function DriverDetails() {
     const { driverId } = useParams();
     const route = "/api/drivers";
     const routeDriver = `${route}/${driverId}`;
-    const routeDriverResults = `${route}/${driverId}/results`;
+    const routeDriverResults = `${route}/${driverId}/results?pageNumber=1&pageSize=50`;
     const navigate = useNavigate();
     const [driver, setDriver] = useState<DriverDto | null>(null);
     const { data, loading, error } = useFetchData<DriverDto>(`${baseUrl}${routeDriver}`);

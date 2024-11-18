@@ -12,7 +12,7 @@ function ConstructorDetails() {
     const { constructorId } = useParams();
     const route = "/api/constructors";
     const routeConstructor = `${route}/${constructorId}`;
-    const routeConstructorResults = `${route}/${constructorId}/results`;
+    const routeConstructorResults = `${route}/${constructorId}/results?pageNumber=1&pageSize=50`;
     const navigate = useNavigate();
     const [constructor, setCconstructor] = useState<ConstructorDto | null>(null);
     const { data, loading, error } = useFetchData<ConstructorDto>(`${baseUrl}${routeConstructor}`);

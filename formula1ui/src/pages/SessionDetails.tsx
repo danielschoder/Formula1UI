@@ -38,8 +38,8 @@ function SessionDetails() {
                 </Typography>
             </Box>
 
-            <Typography variant="body1" gutterBottom>
-                {session.grandPrixName}
+            <Typography variant="h6" gutterBottom>
+                Grandprix: {session.grandPrixName}
             </Typography>
 
             <Typography gutterBottom>
