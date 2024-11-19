@@ -10,9 +10,10 @@ import { DriverDto } from '../interfaces/DriverDto';
 
 function DriverDetails() {
     const { driverId } = useParams();
-    const route = "/api/drivers";
-    const routeDriver = `${route}/${driverId}`;
-    const routeDriverResults = `${route}/${driverId}/results?pageNumber=1&pageSize=50`;
+    const routeDriver = `/api/drivers/${driverId}`;
+    const routeDriverResults = `${routeDriver}/results?pageNumber=1&pageSize=50`;
+    const routeDriverConstructors = `${routeDriver}/constructors`;
+    const routeSeasonDriverResults = `/api/seasons/1950/drivers/${driverId}/results`;
     const navigate = useNavigate();
     const [driver, setDriver] = useState<DriverDto | null>(null);
     const { data, loading, error } = useFetchData<DriverDto>(`${baseUrl}${routeDriver}`);
@@ -30,7 +31,7 @@ function DriverDetails() {
     return (
         <Container sx={{ mb: 4 }}>
             <Box display="flex" alignItems="center" mb={2} mt={2}>
-                <IconButton onClick={() => navigate('/drivers')} color="primary" style={{ marginRight: '16px' }}>
+                <IconButton onClick={() => navigate('/drivers')} color="primary" sx={{ mr: 2 }}>
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>
                 <Typography variant="h2">
@@ -61,6 +62,32 @@ function DriverDetails() {
                     style={{ textTransform: 'lowercase' }}
                 >
                     {routeDriverResults}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}${routeDriverConstructors}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeDriverConstructors}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}${routeSeasonDriverResults}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeSeasonDriverResults}
                 </Button>
             </Typography>
         </Container>

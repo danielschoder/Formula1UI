@@ -10,9 +10,8 @@ import { SessionDto } from '../interfaces/SessionDto';
 
 function SessionDetails() {
     const { sessionId } = useParams();
-    const route = "/api/sessions";
-    const routeSession = `${route}/${sessionId}`;
-    const routeSessionResults = `${route}/${sessionId}/results`;
+    const routeSession = `/api/sessions/${sessionId}`;
+    const routeSessionResults = `${routeSession}/results`;
     const navigate = useNavigate();
     const [session, setSession] = useState<SessionDto | null>(null);
     const { data, loading, error } = useFetchData<SessionDto>(`${baseUrl}${routeSession}`);
@@ -34,12 +33,15 @@ function SessionDetails() {
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>
                 <Typography variant="h2">
-                    {session.seasonYear}/{session.round} {session.sessionTypeDescription}
+                    {session.seasonYear}/{session.round} {session.grandPrixName}
                 </Typography>
             </Box>
 
             <Typography variant="h6" gutterBottom>
-                Grandprix: {session.grandPrixName}
+                Type: {session.sessionTypeDescription}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+                Circuit: {session.circuitName}
             </Typography>
 
             <Typography gutterBottom>

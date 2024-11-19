@@ -4,4 +4,5 @@ export interface SessionDto {
     round: number;
     sessionTypeDescription: string;
     grandPrixName: string;
+    circuitName: string;
 }

@@ -10,9 +10,10 @@ import { ConstructorDto } from '../interfaces/ConstructorDto';
 
 function ConstructorDetails() {
     const { constructorId } = useParams();
-    const route = "/api/constructors";
-    const routeConstructor = `${route}/${constructorId}`;
-    const routeConstructorResults = `${route}/${constructorId}/results?pageNumber=1&pageSize=50`;
+    const routeConstructor = `/api/constructors/${constructorId}`;
+    const routeConstructorResults = `${routeConstructor}/results?pageNumber=1&pageSize=50`;
+    const routeConstructorDrivers = `${routeConstructor}/drivers`;
+    const routeSeasonConstructorResults = `/api/seasons/1950/constructors/${constructorId}/results`;
     const navigate = useNavigate();
     const [constructor, setCconstructor] = useState<ConstructorDto | null>(null);
     const { data, loading, error } = useFetchData<ConstructorDto>(`${baseUrl}${routeConstructor}`);
@@ -61,6 +62,32 @@ function ConstructorDetails() {
                     style={{ textTransform: 'lowercase' }}
                 >
                     {routeConstructorResults}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}${routeConstructorDrivers}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeConstructorDrivers}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}${routeSeasonConstructorResults}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeSeasonConstructorResults}
                 </Button>
             </Typography>
         </Container>
