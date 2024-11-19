@@ -1,7 +1,7 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { SessionDto } from '../interfaces/SessionDto';
 import BaseListPage from './BaseListPage';
-import { useNavigate } from 'react-router-dom';
 
 function Sessions() {
     const navigate = useNavigate();

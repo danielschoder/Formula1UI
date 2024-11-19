@@ -12,6 +12,7 @@ import GrandPrixPage from './pages/GrandPrixPage';
 import Home from './pages/Home';
 import Races from './pages/Races';
 import Results from './pages/Results';
+import SeasonDetails from './pages/SeasonDetails';
 import Seasons from './pages/Seasons';
 import SessionDetails from './pages/SessionDetails';
 import Sessions from './pages/Sessions';
@@ -57,6 +58,7 @@ const App: React.FC = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/seasons" element={<Seasons />} />
+                <Route path="/seasons/:seasonYear" element={<SeasonDetails />} />
                 <Route path="/grandprix" element={<GrandPrixPage />} />
                 <Route path="/drivers" element={<Drivers />} />
                 <Route path="/drivers/:driverId" element={<DriverDetails />} />

@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import { baseUrl } from '../constants';
+import { baseUrl, page1size50 } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
 import { SessionDto } from '../interfaces/SessionDto';
 
 function SessionDetails() {
     const { sessionId } = useParams();
-    const routeSession = `/api/sessions/${sessionId}`;
+    const routeSessions = `/api/sessions`;
+    const routeSession = `${routeSessions}/${sessionId}`;
     const routeSessionResults = `${routeSession}/results`;
     const navigate = useNavigate();
     const [session, setSession] = useState<SessionDto | null>(null);
@@ -24,12 +25,12 @@ function SessionDetails() {
 
     if (loading) return <Loading />;
     if (error) return <Error error={error} />;
-    if (!session) return <Error error="Driver not found" />;
+    if (!session) return <Error error="Session not found" />;
 
     return (
         <Container sx={{ mb: 4 }}>
             <Box display="flex" alignItems="center" mb={2} mt={2}>
-                <IconButton onClick={() => navigate('/drivers')} color="primary" style={{ marginRight: '16px' }}>
+                <IconButton onClick={() => navigate('/sessions')} color="primary" style={{ marginRight: '16px' }}>
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>
                 <Typography variant="h2">
@@ -42,6 +43,19 @@ function SessionDetails() {
             </Typography>
             <Typography variant="h6" gutterBottom>
                 Circuit: {session.circuitName}
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}${routeSessions}${page1size50}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeSessions}
+                </Button>
             </Typography>
 
             <Typography gutterBottom>

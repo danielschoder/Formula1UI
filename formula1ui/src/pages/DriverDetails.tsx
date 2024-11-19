@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import { baseUrl } from '../constants';
+import { baseUrl, page1size50 } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
 import { DriverDto } from '../interfaces/DriverDto';
 
 function DriverDetails() {
     const { driverId } = useParams();
-    const routeDriver = `/api/drivers/${driverId}`;
-    const routeDriverResults = `${routeDriver}/results?pageNumber=1&pageSize=50`;
+    const routeDrivers = `/api/drivers`;
+    const routeDriver = `${routeDrivers}/${driverId}`;
+    const routeDriverResults = `${routeDriver}/results`;
     const routeDriverConstructors = `${routeDriver}/constructors`;
-    const routeSeasonDriverResults = `/api/seasons/1950/drivers/${driverId}/results`;
     const navigate = useNavigate();
     const [driver, setDriver] = useState<DriverDto | null>(null);
     const { data, loading, error } = useFetchData<DriverDto>(`${baseUrl}${routeDriver}`);
@@ -43,12 +43,12 @@ function DriverDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeDriver}`}
+                    href={`${baseUrl}${routeDrivers}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeDriver}
+                    {routeDrivers}
                 </Button>
             </Typography>
 
@@ -56,12 +56,12 @@ function DriverDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeDriverResults}`}
+                    href={`${baseUrl}${routeDriver}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeDriverResults}
+                    {routeDriver}
                 </Button>
             </Typography>
 
@@ -82,12 +82,12 @@ function DriverDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSeasonDriverResults}`}
+                    href={`${baseUrl}${routeDriverResults}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSeasonDriverResults}
+                    {routeDriverResults}
                 </Button>
             </Typography>
         </Container>

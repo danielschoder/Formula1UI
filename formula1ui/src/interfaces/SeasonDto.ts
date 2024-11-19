@@ -1,4 +1,4 @@
-export interface Season {
+export interface SeasonDto {
     year: number;
     wikipediaUrl: string;
 }

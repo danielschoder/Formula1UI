@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
-import { baseUrl } from '../constants';
+import { baseUrl, page1size50 } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
 import { ConstructorDto } from '../interfaces/ConstructorDto';
 
 function ConstructorDetails() {
     const { constructorId } = useParams();
-    const routeConstructor = `/api/constructors/${constructorId}`;
-    const routeConstructorResults = `${routeConstructor}/results?pageNumber=1&pageSize=50`;
+    const routeConstructors = `/api/constructors`;
+    const routeConstructor = `${routeConstructors}/${constructorId}`;
     const routeConstructorDrivers = `${routeConstructor}/drivers`;
-    const routeSeasonConstructorResults = `/api/seasons/1950/constructors/${constructorId}/results`;
+    const routeConstructorResults = `${routeConstructor}/results`;
     const navigate = useNavigate();
     const [constructor, setCconstructor] = useState<ConstructorDto | null>(null);
     const { data, loading, error } = useFetchData<ConstructorDto>(`${baseUrl}${routeConstructor}`);
@@ -43,12 +43,12 @@ function ConstructorDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeConstructor}`}
+                    href={`${baseUrl}${routeConstructors}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeConstructor}
+                    {routeConstructors}
                 </Button>
             </Typography>
 
@@ -56,12 +56,12 @@ function ConstructorDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeConstructorResults}`}
+                    href={`${baseUrl}${routeConstructor}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeConstructorResults}
+                    {routeConstructor}
                 </Button>
             </Typography>
 
@@ -82,12 +82,12 @@ function ConstructorDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSeasonConstructorResults}`}
+                    href={`${baseUrl}${routeConstructorResults}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSeasonConstructorResults}
+                    {routeConstructorResults}
                 </Button>
             </Typography>
         </Container>
