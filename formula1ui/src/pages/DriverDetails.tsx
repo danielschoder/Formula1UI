@@ -1,5 +1,5 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Box, Button, Container, IconButton, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, IconButton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
@@ -12,8 +12,10 @@ function DriverDetails() {
     const { id } = useParams();
     const routeDrivers = `/api/drivers`;
     const routeDriver = `${routeDrivers}/${id}`;
+    const routeDriverSeasons = `${routeDriver}/seasons`;
     const routeDriverConstructors = `${routeDriver}/constructors`;
     const routeDriverResults = `${routeDriver}/results`;
+    const routeDriverRaces = `${routeDriver}/races`;
     const navigate = useNavigate();
     const [driver, setDriver] = useState<DriverDto | null>(null);
     const { data, loading, error } = useFetchData<DriverDto>(`${baseUrl}${routeDriver}`);
@@ -69,6 +71,19 @@ function DriverDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
+                    href={`${baseUrl}${routeDriverSeasons}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeDriverSeasons}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
                     href={`${baseUrl}${routeDriverConstructors}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -88,6 +103,33 @@ function DriverDetails() {
                     style={{ textTransform: 'lowercase' }}
                 >
                     {routeDriverResults}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}${routeDriverRaces}${page1size50}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeDriverRaces}
+                </Button>
+            </Typography>
+
+            <Divider sx={{ mt: 2, mb: 2 }} />
+
+            <Typography mb={2}>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}/scalar/v1#tag/driversendpoints/GET/api/drivers`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    API documentation
                 </Button>
             </Typography>
         </Container>

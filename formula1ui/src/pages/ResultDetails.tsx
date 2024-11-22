@@ -1,5 +1,5 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Box, Button, Container, IconButton, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, IconButton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
@@ -44,6 +44,8 @@ function ResultDetails() {
             <Typography variant="h6" gutterBottom>Constructor: {result.constructorName}</Typography>
             <Typography variant="h6" gutterBottom>Circuit: {result.circuitName}</Typography>
 
+            <Divider sx={{ mb: 2 }} />
+
             <Typography gutterBottom>
                 <Button
                     variant="outlined"
@@ -67,6 +69,20 @@ function ResultDetails() {
                     style={{ textTransform: 'lowercase' }}
                 >
                     {routeResult}
+                </Button>
+            </Typography>
+
+            <Divider sx={{ mt: 2, mb: 2 }} />
+
+            <Typography mb={2}>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}/scalar/v1#tag/resultsendpoints/GET/api/results`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    API documentation
                 </Button>
             </Typography>
         </Container>

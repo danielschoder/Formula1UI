@@ -1,5 +1,5 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Box, Button, Container, IconButton, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, IconButton, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
@@ -38,12 +38,10 @@ function SessionDetails() {
                 </Typography>
             </Box>
 
-            <Typography variant="h6" gutterBottom>
-                Type: {session.sessionTypeDescription}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-                Circuit: {session.circuitName}
-            </Typography>
+            <Typography variant="h6" gutterBottom>Type: {session.sessionTypeDescription}</Typography>
+            <Typography variant="h6" gutterBottom>Circuit: {session.circuitName}</Typography>
+
+            <Divider sx={{ mb: 2 }} />
 
             <Typography gutterBottom>
                 <Button
@@ -81,6 +79,20 @@ function SessionDetails() {
                     style={{ textTransform: 'lowercase' }}
                 >
                     {routeSessionResults}
+                </Button>
+            </Typography>
+
+            <Divider sx={{ mt: 2, mb: 2 }} />
+
+            <Typography mb={2}>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}/scalar/v1#tag/sessionsendpoints/GET/api/sessions`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    API documentation
                 </Button>
             </Typography>
         </Container>

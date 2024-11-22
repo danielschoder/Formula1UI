@@ -42,6 +42,20 @@ function SeasonDetails() {
                 </Typography>
             </Box>
 
+            <Typography variant="h6" gutterBottom>
+                <Button
+                    variant="outlined"
+                    href={season.wikipediaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    Wikipedia
+                </Button>
+            </Typography>
+
+            <Divider sx={{ mt: 2, mb: 2 }} />
+
             <Typography gutterBottom>
                 <Button
                     variant="outlined"
@@ -135,18 +149,17 @@ function SeasonDetails() {
 
             <Divider sx={{ mt: 2, mb: 2 }} />
 
-            <Typography variant="h6" gutterBottom>
+            <Typography mb={2}>
                 <Button
                     variant="outlined"
-                    href={season.wikipediaUrl}
+                    color="primary"
+                    href={`${baseUrl}/scalar/v1#tag/seasonsendpoints/GET/api/seasons`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textTransform: 'lowercase' }}
                 >
-                    Wikipedia
+                    API documentation
                 </Button>
             </Typography>
-
         </Container>
     );
 }
