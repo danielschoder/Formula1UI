@@ -1,6 +1,6 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ResultDto } from '../interfaces/Result';
+import { ResultDto } from '../dtos/ResultDto';
 import BaseListPage from './BaseListPage';
 
 function Results() {

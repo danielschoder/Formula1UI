@@ -1,7 +1,7 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ConstructorDto } from '../interfaces/ConstructorDto';
 import BaseListPage from './BaseListPage';
+import { ConstructorDto } from '../dtos/ConstructorDto';
 
 function Constructors() {
     const navigate = useNavigate();

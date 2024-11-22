@@ -1,6 +1,6 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { SeasonDto } from '../interfaces/SeasonDto';
+import { SeasonDto } from '../dtos/SeasonDto';
 import BaseListPage from './BaseListPage';
 
 function Seasons() {

@@ -1,6 +1,6 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { RaceDto } from '../interfaces/RaceDto';
+import { RaceDto } from '../dtos/RaceDto';
 import BaseListPageProps from './BaseListPage';
 
 function Races() {

@@ -1,6 +1,6 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { GrandPrixDto } from '../interfaces/GrandPrixDto.ts';
+import { GrandPrixDto } from '../dtos/GrandPrixDto.ts';
 import BaseListPage from './BaseListPage.tsx';
 
 function GrandPrix() {

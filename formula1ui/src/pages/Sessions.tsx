@@ -1,6 +1,6 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { SessionDto } from '../interfaces/SessionDto';
+import { SessionDto } from '../dtos/SessionDto';
 import BaseListPage from './BaseListPage';
 
 function Sessions() {
