@@ -1,4 +1,4 @@
-export interface Race {
+export interface RaceDto {
     id: number;
     seasonYear: number;
     round: number;

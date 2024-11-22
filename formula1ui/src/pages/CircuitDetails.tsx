@@ -5,37 +5,36 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { baseUrl, page1size50 } from '../constants';
+import { CircuitDto } from '../dtos/CircuitDto';
 import { useFetchData } from '../hooks/useFetchData';
-import { ConstructorDto } from '../dtos/ConstructorDto';
 
-function ConstructorDetails() {
+function CircuitDetails() {
     const { id } = useParams();
-    const routeConstructors = `/api/constructors`;
-    const routeConstructor = `${routeConstructors}/${id}`;
-    const routeConstructorDrivers = `${routeConstructor}/drivers`;
-    const routeConstructorResults = `${routeConstructor}/results`;
+    const routeCircuits = `/api/circuits`;
+    const routeCircuit = `${routeCircuits}/${id}`;
+    const routeCircuitRaces = `${routeCircuit}/races`;
     const navigate = useNavigate();
-    const [constructor, setCconstructor] = useState<ConstructorDto | null>(null);
-    const { data, loading, error } = useFetchData<ConstructorDto>(`${baseUrl}${routeConstructor}`);
+    const [circuit, setCircuit] = useState<CircuitDto | null>(null);
+    const { data, loading, error } = useFetchData<CircuitDto>(`${baseUrl}${routeCircuit}`);
 
     useEffect(() => {
         if (data) {
-            setCconstructor(data);
+            setCircuit(data);
         }
     }, [data]);
 
     if (loading) return <Loading />;
     if (error) return <Error error={error} />;
-    if (!constructor) return <Error error="Constructor not found" />;
+    if (!circuit) return <Error error="Circuit not found" />;
 
     return (
         <Container sx={{ mb: 4 }}>
             <Box display="flex" alignItems="center" mb={2} mt={2}>
-                <IconButton onClick={() => navigate('/constructors')} color="primary" style={{ marginRight: '16px' }}>
+                <IconButton onClick={() => navigate('/circuits')} color="primary" style={{ marginRight: '16px' }}>
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>
                 <Typography variant="h2">
-                    {constructor.name}
+                    {circuit.name}
                 </Typography>
             </Box>
 
@@ -43,12 +42,12 @@ function ConstructorDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeConstructors}${page1size50}`}
+                    href={`${baseUrl}${routeCircuits}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeConstructors}
+                    {routeCircuits}
                 </Button>
             </Typography>
 
@@ -56,12 +55,12 @@ function ConstructorDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeConstructor}`}
+                    href={`${baseUrl}${routeCircuit}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeConstructor}
+                    {routeCircuit}
                 </Button>
             </Typography>
 
@@ -69,29 +68,16 @@ function ConstructorDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeConstructorDrivers}`}
+                    href={`${baseUrl}${routeCircuitRaces}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeConstructorDrivers}
-                </Button>
-            </Typography>
-
-            <Typography gutterBottom>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    href={`${baseUrl}${routeConstructorResults}${page1size50}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textTransform: 'lowercase' }}
-                >
-                    {routeConstructorResults}
+                    {routeCircuitRaces}
                 </Button>
             </Typography>
         </Container>
     );
 }
 
-export default ConstructorDetails;
+export default CircuitDetails;

@@ -53,7 +53,7 @@ const Home = () => {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href="https://github.com/dietmar-schoder/Formula1"
+                    href="https://github.com/danielschoder/Formula1"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

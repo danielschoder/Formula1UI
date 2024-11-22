@@ -6,55 +6,52 @@ import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { baseUrl, page1size50 } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
-import { SessionDto } from '../dtos/SessionDto';
+import { RaceDto } from '../dtos/RaceDto';
 
-function SessionDetails() {
+function RaceDetails() {
     const { id } = useParams();
-    const routeSessions = `/api/sessions`;
-    const routeSession = `${routeSessions}/${id}`;
-    const routeSessionResults = `${routeSession}/results`;
+    const routeRaces = `/api/races`;
+    const routeRace = `${routeRaces}/${id}`;
+    //const routeRaceResults = `${routeRace}/results`;
     const navigate = useNavigate();
-    const [session, setSession] = useState<SessionDto | null>(null);
-    const { data, loading, error } = useFetchData<SessionDto>(`${baseUrl}${routeSession}`);
+    const [race, setRace] = useState<RaceDto | null>(null);
+    const { data, loading, error } = useFetchData<RaceDto>(`${baseUrl}${routeRace}`);
 
     useEffect(() => {
         if (data) {
-            setSession(data);
+            setRace(data);
         }
     }, [data]);
 
     if (loading) return <Loading />;
     if (error) return <Error error={error} />;
-    if (!session) return <Error error="Session not found" />;
+    if (!race) return <Error error="Race not found" />;
 
     return (
         <Container sx={{ mb: 4 }}>
             <Box display="flex" alignItems="center" mb={2} mt={2}>
-                <IconButton onClick={() => navigate('/sessions')} color="primary" style={{ marginRight: '16px' }}>
+                <IconButton onClick={() => navigate('/races')} color="primary" style={{ marginRight: '16px' }}>
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>
                 <Typography variant="h2">
-                    {session.seasonYear}/{session.round} {session.grandPrixName}
+                    {race.seasonYear}/{race.round} {race.grandPrixName}
                 </Typography>
             </Box>
 
             <Typography variant="h6" gutterBottom>
-                Type: {session.sessionTypeDescription}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-                Circuit: {session.circuitName}
+                Circuit: {race.circuitName}
             </Typography>
 
             <Typography gutterBottom>
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSessions}${page1size50}`}
+                    href={`${baseUrl}${routeRaces}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSessions}
+                    {routeRaces}
                 </Button>
             </Typography>
 
@@ -62,29 +59,29 @@ function SessionDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSession}`}
+                    href={`${baseUrl}${routeRace}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSession}
+                    {routeRace}
                 </Button>
             </Typography>
 
-            <Typography gutterBottom>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    href={`${baseUrl}${routeSessionResults}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textTransform: 'lowercase' }}
-                >
-                    {routeSessionResults}
-                </Button>
-            </Typography>
+        {/*    <Typography gutterBottom>*/}
+        {/*        <Button*/}
+        {/*            variant="outlined"*/}
+        {/*            color="primary"*/}
+        {/*            href={`${baseUrl}${routeRaceResults}`}*/}
+        {/*            target="_blank"*/}
+        {/*            rel="noopener noreferrer"*/}
+        {/*            style={{ textTransform: 'lowercase' }}*/}
+        {/*        >*/}
+        {/*            {routeRaceResults}*/}
+        {/*        </Button>*/}
+        {/*    </Typography>*/}
         </Container>
     );
 }
 
-export default SessionDetails;
+export default RaceDetails;

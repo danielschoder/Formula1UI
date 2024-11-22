@@ -6,14 +6,14 @@ import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { baseUrl, page1size50 } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
-import { DriverDto } from '../interfaces/DriverDto';
+import { DriverDto } from '../dtos/DriverDto';
 
 function DriverDetails() {
-    const { driverId } = useParams();
+    const { id } = useParams();
     const routeDrivers = `/api/drivers`;
-    const routeDriver = `${routeDrivers}/${driverId}`;
-    const routeDriverResults = `${routeDriver}/results`;
+    const routeDriver = `${routeDrivers}/${id}`;
     const routeDriverConstructors = `${routeDriver}/constructors`;
+    const routeDriverResults = `${routeDriver}/results`;
     const navigate = useNavigate();
     const [driver, setDriver] = useState<DriverDto | null>(null);
     const { data, loading, error } = useFetchData<DriverDto>(`${baseUrl}${routeDriver}`);

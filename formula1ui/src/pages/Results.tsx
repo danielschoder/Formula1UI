@@ -1,10 +1,13 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { Result } from '../interfaces/Result';
+import { useNavigate } from 'react-router-dom';
+import { ResultDto } from '../interfaces/Result';
 import BaseListPage from './BaseListPage';
 
 function Results() {
+    const navigate = useNavigate();
+
     return (
-        <BaseListPage<Result>
+        <BaseListPage<ResultDto>
             title="Results"
             route="/api/results"
             itemsName="results"
@@ -45,7 +48,11 @@ function Results() {
                         </Box>
                     </ListItem>
                     {results?.map((result) => (
-                        <ListItem key={result.id} sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1 }}>
+                        <ListItem
+                            key={result.id}
+                            sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1, cursor: 'pointer' }}
+                            onClick={() => navigate(`/results/${result.id}`)}
+                        >
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">

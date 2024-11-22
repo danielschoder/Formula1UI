@@ -1,10 +1,13 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { GrandPrix } from '../interfaces/GrandPrix.ts';
+import { useNavigate } from 'react-router-dom';
+import { GrandPrixDto } from '../interfaces/GrandPrixDto.ts';
 import BaseListPage from './BaseListPage.tsx';
 
-function GrandPrixPage() {
+function GrandPrix() {
+    const navigate = useNavigate();
+
     return (
-        <BaseListPage<GrandPrix>
+        <BaseListPage<GrandPrixDto>
             title="Grand Prix"
             route="/api/grandprix"
             itemsName="grandPrix"
@@ -25,7 +28,11 @@ function GrandPrixPage() {
                         </Box>
                     </ListItem>
                     {grandPrixDtos?.map((grandPrixDto) => (
-                        <ListItem key={grandPrixDto.id} sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1 }}>
+                        <ListItem
+                            key={grandPrixDto.id}
+                            sx={{ backgroundColor: "#f5f5f5", mb: 1, borderRadius: 1, cursor: 'pointer' }}
+                            onClick={() => navigate(`/grandprix/${grandPrixDto.id}`)}
+                        >
                             <Box display="flex" alignItems="center" justifyContent="space-between" width="100%" px={2}>
                                 <Box flex={1}>
                                     <Typography variant="body1" color="text.secondary" fontWeight="bold">
@@ -52,4 +59,4 @@ function GrandPrixPage() {
     );
 }
 
-export default GrandPrixPage;
+export default GrandPrix;

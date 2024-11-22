@@ -2,8 +2,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material';
 import React from 'react';
 import { AuthService } from '../hooks/AuthService';
-import LoginDialog from '../pages/LoginDialog';
-import RegisterDialog from '../pages/RegisterDialog';
+import LoginDialog from './LoginDialog';
+import RegisterDialog from './RegisterDialog';
 
 interface AppBarComponentProps {
     authService: AuthService;

@@ -6,55 +6,48 @@ import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { baseUrl, page1size50 } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
-import { SessionDto } from '../dtos/SessionDto';
+import { GrandPrixDto } from '../dtos/GrandPrixDto';
 
-function SessionDetails() {
+function GrandPrixDetails() {
     const { id } = useParams();
-    const routeSessions = `/api/sessions`;
-    const routeSession = `${routeSessions}/${id}`;
-    const routeSessionResults = `${routeSession}/results`;
+    const routeGrandprixList = `/api/grandprix`;
+    const routeGrandprix = `${routeGrandprixList}/${id}`;
+    //const routeGrandprixResults = `${routeGrandprix}/results`;
     const navigate = useNavigate();
-    const [session, setSession] = useState<SessionDto | null>(null);
-    const { data, loading, error } = useFetchData<SessionDto>(`${baseUrl}${routeSession}`);
+    const [grandPrix, setGrandPrix] = useState<GrandPrixDto | null>(null);
+    const { data, loading, error } = useFetchData<GrandPrixDto>(`${baseUrl}${routeGrandprix}`);
 
     useEffect(() => {
         if (data) {
-            setSession(data);
+            setGrandPrix(data);
         }
     }, [data]);
 
     if (loading) return <Loading />;
     if (error) return <Error error={error} />;
-    if (!session) return <Error error="Session not found" />;
+    if (!grandPrix) return <Error error="GrandPrix not found" />;
 
     return (
         <Container sx={{ mb: 4 }}>
             <Box display="flex" alignItems="center" mb={2} mt={2}>
-                <IconButton onClick={() => navigate('/sessions')} color="primary" style={{ marginRight: '16px' }}>
+                <IconButton onClick={() => navigate('/grandprix')} color="primary" style={{ marginRight: '16px' }}>
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>
                 <Typography variant="h2">
-                    {session.seasonYear}/{session.round} {session.grandPrixName}
+                    {grandPrix.name}
                 </Typography>
             </Box>
 
-            <Typography variant="h6" gutterBottom>
-                Type: {session.sessionTypeDescription}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-                Circuit: {session.circuitName}
-            </Typography>
-
             <Typography gutterBottom>
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSessions}${page1size50}`}
+                    href={`${baseUrl}${routeGrandprixList}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSessions}
+                    {routeGrandprixList}
                 </Button>
             </Typography>
 
@@ -62,29 +55,29 @@ function SessionDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSession}`}
+                    href={`${baseUrl}${routeGrandprix}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSession}
+                    {routeGrandprix}
                 </Button>
             </Typography>
 
-            <Typography gutterBottom>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    href={`${baseUrl}${routeSessionResults}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textTransform: 'lowercase' }}
-                >
-                    {routeSessionResults}
-                </Button>
-            </Typography>
+        {/*    <Typography gutterBottom>*/}
+        {/*        <Button*/}
+        {/*            variant="outlined"*/}
+        {/*            color="primary"*/}
+        {/*            href={`${baseUrl}${routeGrandprixResults}`}*/}
+        {/*            target="_blank"*/}
+        {/*            rel="noopener noreferrer"*/}
+        {/*            style={{ textTransform: 'lowercase' }}*/}
+        {/*        >*/}
+        {/*            {routeGrandprixResults}*/}
+        {/*        </Button>*/}
+        {/*    </Typography>*/}
         </Container>
     );
 }
 
-export default SessionDetails;
+export default GrandPrixDetails;

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { PaginatedResponse } from '../interfaces/PaginatedResponse';
+import { PaginatedResponseDto } from '../dtos/PaginatedResponseDto';
 
 export function useFetchPaginatedData<T>(url: string, itemsName: string, page: number, pageSize: number) {
-    const [data, setData] = useState<PaginatedResponse<T> | null>(null);
+    const [data, setData] = useState<PaginatedResponseDto<T> | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -17,7 +17,7 @@ export function useFetchPaginatedData<T>(url: string, itemsName: string, page: n
                 return response.json();
             })
             .then((data: Record<string, never>) => {
-                const instance = new PaginatedResponse<T>(data, itemsName);
+                const instance = new PaginatedResponseDto<T>(data, itemsName);
                 setData(instance);
                 setLoading(false);
             })

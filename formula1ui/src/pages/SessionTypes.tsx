@@ -1,10 +1,10 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { SessionType } from '../interfaces/SessionType';
+import { SessionTypeDto } from '../interfaces/SessionType';
 import BaseListPage from './BaseListPage';
 
 function SessionTypes() {
     return (
-        <BaseListPage<SessionType>
+        <BaseListPage<SessionTypeDto>
             title="Session Types"
             route="/api/sessiontypes"
             itemsName="sessionTypes"

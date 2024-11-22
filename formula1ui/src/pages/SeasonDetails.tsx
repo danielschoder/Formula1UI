@@ -6,12 +6,12 @@ import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { baseUrl, page1size50 } from '../constants';
 import { useFetchData } from '../hooks/useFetchData';
-import { SeasonDto } from '../interfaces/SeasonDto';
+import { SeasonDto } from '../dtos/SeasonDto';
 
 function SeasonDetails() {
-    const { seasonYear } = useParams();
+    const { year } = useParams();
     const routeSeasons = `/api/seasons`;
-    const routeSeason = `${routeSeasons}/${seasonYear}`;
+    const routeSeason = `${routeSeasons}/${year}`;
     const routeSeasonRaces = `${routeSeason}/races`;
     const routeSeasonDrivers = `${routeSeason}/drivers`;
     const routeSeasonConstructors = `${routeSeason}/constructors`;
@@ -98,6 +98,19 @@ function SeasonDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
+                    href={`${baseUrl}${routeSeasonDriverResults}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {routeSeasonDriverResults}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
                     href={`${baseUrl}${routeSeasonConstructors}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -117,19 +130,6 @@ function SeasonDetails() {
                     style={{ textTransform: 'lowercase' }}
                 >
                     {routeSeasonConstructorResults}
-                </Button>
-            </Typography>
-
-            <Typography gutterBottom>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    href={`${baseUrl}${routeSeasonDriverResults}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textTransform: 'lowercase' }}
-                >
-                    {routeSeasonDriverResults}
                 </Button>
             </Typography>
 

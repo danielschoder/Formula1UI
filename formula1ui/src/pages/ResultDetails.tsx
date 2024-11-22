@@ -5,56 +5,55 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Error from '../components/Error';
 import Loading from '../components/Loading';
 import { baseUrl, page1size50 } from '../constants';
+import { ResultDto } from '../dtos/ResultDto';
 import { useFetchData } from '../hooks/useFetchData';
-import { SessionDto } from '../dtos/SessionDto';
 
-function SessionDetails() {
+function ResultDetails() {
     const { id } = useParams();
-    const routeSessions = `/api/sessions`;
-    const routeSession = `${routeSessions}/${id}`;
-    const routeSessionResults = `${routeSession}/results`;
+    const routeResults = `/api/results`;
+    const routeResult = `${routeResults}/${id}`;
     const navigate = useNavigate();
-    const [session, setSession] = useState<SessionDto | null>(null);
-    const { data, loading, error } = useFetchData<SessionDto>(`${baseUrl}${routeSession}`);
+    const [result, setResult] = useState<ResultDto | null>(null);
+    const { data, loading, error } = useFetchData<ResultDto>(`${baseUrl}${routeResult}`);
 
     useEffect(() => {
         if (data) {
-            setSession(data);
+            setResult(data);
         }
     }, [data]);
 
     if (loading) return <Loading />;
     if (error) return <Error error={error} />;
-    if (!session) return <Error error="Session not found" />;
+    if (!result) return <Error error="Result not found" />;
 
     return (
         <Container sx={{ mb: 4 }}>
             <Box display="flex" alignItems="center" mb={2} mt={2}>
-                <IconButton onClick={() => navigate('/sessions')} color="primary" style={{ marginRight: '16px' }}>
+                <IconButton onClick={() => navigate('/results')} color="primary" style={{ marginRight: '16px' }}>
                     <ArrowBackIcon fontSize="large" />
                 </IconButton>
                 <Typography variant="h2">
-                    {session.seasonYear}/{session.round} {session.grandPrixName}
+                    {result.seasonYear}/{result.round} {result.grandPrixName} - {result.sessionTypeDescription}
                 </Typography>
             </Box>
 
-            <Typography variant="h6" gutterBottom>
-                Type: {session.sessionTypeDescription}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
-                Circuit: {session.circuitName}
-            </Typography>
+            <Typography variant="h6" gutterBottom>Position: {result.position}</Typography>
+            <Typography variant="h6" gutterBottom>Ranking: {result.ranking}</Typography>
+            <Typography variant="h6" gutterBottom>Points: {result.points}</Typography>
+            <Typography variant="h6" gutterBottom>Driver: {result.driverName}</Typography>
+            <Typography variant="h6" gutterBottom>Constructor: {result.constructorName}</Typography>
+            <Typography variant="h6" gutterBottom>Circuit: {result.circuitName}</Typography>
 
             <Typography gutterBottom>
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSessions}${page1size50}`}
+                    href={`${baseUrl}${routeResults}${page1size50}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSessions}
+                    {routeResults}
                 </Button>
             </Typography>
 
@@ -62,29 +61,16 @@ function SessionDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
-                    href={`${baseUrl}${routeSession}`}
+                    href={`${baseUrl}${routeResult}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textTransform: 'lowercase' }}
                 >
-                    {routeSession}
-                </Button>
-            </Typography>
-
-            <Typography gutterBottom>
-                <Button
-                    variant="outlined"
-                    color="primary"
-                    href={`${baseUrl}${routeSessionResults}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textTransform: 'lowercase' }}
-                >
-                    {routeSessionResults}
+                    {routeResult}
                 </Button>
             </Typography>
         </Container>
     );
 }
 
-export default SessionDetails;
+export default ResultDetails;

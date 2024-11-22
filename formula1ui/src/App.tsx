@@ -3,14 +3,18 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AppBarComponent from './components/AppBarComponent';
 import DrawerComponent from './components/DrawerComponent';
 import { AuthService } from './hooks/AuthService';
+import CircuitDetails from './pages/CircuitDetails';
 import Circuits from './pages/Circuits';
 import ConstructorDetails from './pages/ConstructorDetails';
 import Constructors from './pages/Constructors';
 import DriverDetails from './pages/DriverDetails';
 import Drivers from './pages/Drivers';
-import GrandPrixPage from './pages/GrandPrixPage';
+import GrandPrixDetails from './pages/GrandPrixDetails';
+import GrandPrix from './pages/GrandPrix';
 import Home from './pages/Home';
+import RaceDetails from './pages/RaceDetails';
 import Races from './pages/Races';
+import ResultDetails from './pages/ResultDetails';
 import Results from './pages/Results';
 import SeasonDetails from './pages/SeasonDetails';
 import Seasons from './pages/Seasons';
@@ -57,18 +61,22 @@ const App: React.FC = () => {
             />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/seasons" element={<Seasons />} />
-                <Route path="/seasons/:seasonYear" element={<SeasonDetails />} />
-                <Route path="/grandprix" element={<GrandPrixPage />} />
-                <Route path="/drivers" element={<Drivers />} />
-                <Route path="/drivers/:driverId" element={<DriverDetails />} />
-                <Route path="/constructors" element={<Constructors />} />
-                <Route path="/constructors/:constructorId" element={<ConstructorDetails />} />
                 <Route path="/circuits" element={<Circuits />} />
+                <Route path="/circuits/:id" element={<CircuitDetails />} />
+                <Route path="/constructors" element={<Constructors />} />
+                <Route path="/constructors/:id" element={<ConstructorDetails />} />
+                <Route path="/drivers" element={<Drivers />} />
+                <Route path="/drivers/:id" element={<DriverDetails />} />
+                <Route path="/grandprix" element={<GrandPrix />} />
+                <Route path="/grandprix/:id" element={<GrandPrixDetails />} />
                 <Route path="/races" element={<Races />} />
-                <Route path="/sessions" element={<Sessions />} />
-                <Route path="/sessions/:sessionId" element={<SessionDetails />} />
+                <Route path="/races/:id" element={<RaceDetails />} />
                 <Route path="/results" element={<Results />} />
+                <Route path="/results/:id" element={<ResultDetails />} />
+                <Route path="/seasons" element={<Seasons />} />
+                <Route path="/seasons/:year" element={<SeasonDetails />} />
+                <Route path="/sessions" element={<Sessions />} />
+                <Route path="/sessions/:id" element={<SessionDetails />} />
                 <Route path="/sessiontypes" element={<SessionTypes />} />
             </Routes>
         </Router>
