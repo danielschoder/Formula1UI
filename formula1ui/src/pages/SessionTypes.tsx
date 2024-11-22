@@ -1,5 +1,5 @@
 import { Box, List, ListItem, Typography } from '@mui/material';
-import { SessionTypeDto } from '../interfaces/SessionType';
+import { SessionTypeDto } from '../dtos/SessionTypeDto';
 import BaseListPage from './BaseListPage';
 
 function SessionTypes() {
