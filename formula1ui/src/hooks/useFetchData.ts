@@ -6,7 +6,12 @@ export function useFetchData<T>(url: string) {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch(url)
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            },
+        })
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');

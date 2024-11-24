@@ -14,7 +14,9 @@ function SeasonDetails() {
     const routeSeason = `${routeSeasons}/${year}`;
     const routeSeasonRaces = `${routeSeason}/races`;
     const routeSeasonDrivers = `${routeSeason}/drivers`;
+    const routeSeasonDriversResults = `${routeSeason}/drivers/results`;
     const routeSeasonConstructors = `${routeSeason}/constructors`;
+    const routeSeasonConstructorsResults = `${routeSeason}/constructors/results`;
     const routeSeasonConstructorResults = `${routeSeason}/constructors/{constructorId}/results`;
     const routeSeasonDriverResults = `${routeSeason}/drivers/{driverId}/results`;
     const navigate = useNavigate();
@@ -112,6 +114,19 @@ function SeasonDetails() {
                 <Button
                     variant="outlined"
                     color="primary"
+                    href={`${baseUrl}${routeSeasonDriversResults}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {`${routeSeasonDriversResults} CSV file`}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
                     href={`${baseUrl}${routeSeasonDriverResults}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -131,6 +146,19 @@ function SeasonDetails() {
                     style={{ textTransform: 'lowercase' }}
                 >
                     {routeSeasonConstructors}
+                </Button>
+            </Typography>
+
+            <Typography gutterBottom>
+                <Button
+                    variant="outlined"
+                    color="primary"
+                    href={`${baseUrl}${routeSeasonConstructorsResults}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textTransform: 'lowercase' }}
+                >
+                    {`${routeSeasonConstructorsResults} CSV file`}
                 </Button>
             </Typography>
 
